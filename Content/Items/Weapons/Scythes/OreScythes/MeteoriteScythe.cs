@@ -90,7 +90,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes
             {
                 DeathMessage = " forgot to heal.";
             }
-            player.Hurt(PlayerDeathReason.ByCustomReason(player.name + DeathMessage), LifeCost, 0, false, true, false, -1);
+            player.Hurt(PlayerDeathReason.ByCustomReason(player.name + DeathMessage), LifeCost, 0, false, true, -1, false, 1000, 2, 0);
             player.immuneTime = 0;
             return true;
         }

@@ -17,6 +17,7 @@ using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 using Terraria.Audio;
 using WraithMod.Content.Items.Misc;
+using Terraria.WorldBuilding;
 
 namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
 {
@@ -95,7 +96,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
             {
                 DeathMessage = " forgot to heal.";
             }
-            player.Hurt(PlayerDeathReason.ByCustomReason(player.name + DeathMessage), LifeCost, 0, false, true, false, -1);
+            player.Hurt(PlayerDeathReason.ByCustomReason(player.name + DeathMessage), LifeCost, 0, false, true, -1, false, 1000, 2, 0);
             player.immuneTime = 0;
             return true;
         }
@@ -124,8 +125,9 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
             target.AddBuff(BuffID.OnFire, 240);
             if (target.HasBuff(BuffID.OnFire) || target.HasBuff(BuffID.OnFire3))
             {
-                int damage2 = (int)(damage * 1.2);
-                damage = damage2;
+                modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
+                    hitInfo.Damage *= (int)1.2f;
+                };
             }
         }
     }
@@ -203,11 +205,6 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
         {
             target.AddBuff(BuffID.OnFire3, 120);
             target.AddBuff(BuffID.OnFire, 240);
-            if (target.HasBuff(BuffID.OnFire) || target.HasBuff(BuffID.OnFire3))
-            {
-                int damage2 = (int)(damage * 1.2);
-                damage = damage2;
-            }
         }
         public override void AI()
         {

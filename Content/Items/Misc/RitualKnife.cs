@@ -50,7 +50,7 @@ namespace WraithMod.Content.Items.Misc
             {
                 DeathMessage = " gave their lives to the gods.";
             }
-            player.Hurt(PlayerDeathReason.ByCustomReason(player.name + DeathMessage), Item.damage, 0, false, true, false, -1);
+            player.Hurt(PlayerDeathReason.ByCustomReason(player.name + DeathMessage), Item.damage, 0, false, true, -1, false, 1000, 2, 0);
             player.immuneTime = 0;
             bool hasBottle = player.HasItem(31);
             if (hasBottle)

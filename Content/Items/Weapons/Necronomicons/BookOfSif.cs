@@ -515,4 +515,3 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         }
     }
 }
-}
