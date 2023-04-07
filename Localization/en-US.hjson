@@ -1,4 +1,4 @@
-﻿# All localization happens in hjson files. These files contains the display names of content and other text values that will differ between languages.
+# All localization happens in hjson files. These files contains the display names of content and other text values that will differ between languages.
 # .hjson files contain translations for the language specified in the filename. (Make sure this file is UTF-8 encoded only.)
 # The possible languages are: English ("en-US"), German ("de-DE"), Italian ("it-IT"), French ("fr-FR"), Spanish ("es-ES"), Russian ("ru-RU"), Chinese ("zh-Hans"), Portuguese ("pt-BR"), and Polish ("pl-PL")
 # Localization files will be automatically updated with new content. After building and reloading the mod, new entries will appear in hjson files and can then be filled in.
@@ -8,8 +8,187 @@
 
 Mods: {
 	WraithMod: {
-		MapObject: {
-			RitualTable: Ritual Table
+		MapObject.RitualTable: Ritual Table
+
+		Buffs: {
+			ShadowMinionBuff: {
+				Description: Mods.WraithMod.Buffs.ShadowMinionBuff.Description
+				DisplayName: Shadow Minion Buff
+			}
+
+			MagmaEyeMinionBuff: {
+				Description: Mods.WraithMod.Buffs.MagmaEyeMinionBuff.Description
+				DisplayName: Magma Eye Minion Buff
+			}
+
+			CreeperMinionBuff: {
+				Description: Mods.WraithMod.Buffs.CreeperMinionBuff.Description
+				DisplayName: Creeper Minion Buff
+			}
+
+			AsteroidCooldown: {
+				Description: Mods.WraithMod.Buffs.AsteroidCooldown.Description
+				DisplayName: Asteroid Cooldown
+			}
+
+			InvincibleCooldown: {
+				Description: Mods.WraithMod.Buffs.InvincibleCooldown.Description
+				DisplayName: Invincible Cooldown
+			}
+
+			Rage: {
+				Description: Mods.WraithMod.Buffs.Rage.Description
+				DisplayName: Rage
+			}
+
+			BloodSickness: {
+				Description: Mods.WraithMod.Buffs.BloodSickness.Description
+				DisplayName: Blood Sickness
+			}
+		}
+
+		Tiles.RitualTable.MapEntry: Ritual Table
+		"Keybinds.Armour Set Bonus.DisplayName": Mods.WraithMod.Keybinds.Armour Set Bonus.DisplayName
+
+		Items: {
+			BaseScythe: {
+				DisplayName: Base Scythe
+				Tooltip: ""
+			}
+
+			GelAglet: {
+				DisplayName: Gel Aglet
+				Tooltip: ""
+			}
+
+			ApprenticeHood: {
+				DisplayName: Apprentice Hood
+				Tooltip: ""
+			}
+
+			ApprenticeRobe: {
+				DisplayName: Apprentice Robe
+				Tooltip: ""
+			}
+
+			BloodContained: {
+				DisplayName: Blood Contained
+				Tooltip: ""
+			}
+
+			DarkDust: {
+				DisplayName: Dark Dust
+				Tooltip: ""
+			}
+
+			RitualKnife: {
+				DisplayName: Ritual Knife
+				Tooltip: ""
+			}
+
+			RitualTable: {
+				DisplayName: Ritual Table
+				Tooltip: ""
+			}
+
+			BookOfSif: {
+				DisplayName: Book Of Sif
+				Tooltip: ""
+			}
+
+			CopperScythe: {
+				DisplayName: Copper Scythe
+				Tooltip: ""
+			}
+
+			GoldScythe: {
+				DisplayName: Gold Scythe
+				Tooltip: ""
+			}
+
+			IronScythe: {
+				DisplayName: Iron Scythe
+				Tooltip: ""
+			}
+
+			LeadScythe: {
+				DisplayName: Lead Scythe
+				Tooltip: ""
+			}
+
+			MeteoriteScythe: {
+				DisplayName: Meteorite Scythe
+				Tooltip: ""
+			}
+
+			CrimtaneScythe: {
+				DisplayName: Crimtane Scythe
+				Tooltip: ""
+			}
+
+			DemoniteScythe: {
+				DisplayName: Demonite Scythe
+				Tooltip: ""
+			}
+
+			HellstoneScythe: {
+				DisplayName: Hellstone Scythe
+				Tooltip: ""
+			}
+
+			PlatinumScythe: {
+				DisplayName: Platinum Scythe
+				Tooltip: ""
+			}
+
+			SilverScythe: {
+				DisplayName: Silver Scythe
+				Tooltip: ""
+			}
+
+			TinScythe: {
+				DisplayName: Tin Scythe
+				Tooltip: ""
+			}
+
+			TungstenScythe: {
+				DisplayName: Tungsten Scythe
+				Tooltip: ""
+			}
+
+			WoodenScythe: {
+				DisplayName: Wooden Scythe
+				Tooltip: ""
+			}
+		}
+
+		Projectiles: {
+			Blinkroot.DisplayName: Blinkroot
+			BookOfSifProj.DisplayName: Book Of Sif Proj
+			Daybloom.DisplayName: Daybloom
+			Deathweed.DisplayName: Deathweed
+			Fireblossom.DisplayName: Fireblossom
+			Moonglow.DisplayName: Moonglow
+			Shiverthorn.DisplayName: Shiverthorn
+			Waterleaf.DisplayName: Waterleaf
+			AnvilProj.DisplayName: Anvil Proj
+			Asteroid.DisplayName: Asteroid
+			CopperCoin.DisplayName: Copper Coin
+			GoldCoin.DisplayName: Gold Coin
+			LeadAnvilProj.DisplayName: Lead Anvil Proj
+			Meteorite.DisplayName: Meteorite
+			BrainProj.DisplayName: Brain Proj
+			CreeperMinion.DisplayName: Creeper Minion
+			EyeProj.DisplayName: Eye Proj
+			FireBeam.DisplayName: Fire Beam
+			FleshAmalgProj.DisplayName: Flesh Amalg Proj
+			MagmaEye.DisplayName: Magma Eye
+			ShadowMinion.DisplayName: Shadow Minion
+			PlatinumCoin.DisplayName: Platinum Coin
+			SilverCoin.DisplayName: Silver Coin
+			TinCoin.DisplayName: Tin Coin
+			TungstenCoin.DisplayName: Tungsten Coin
+			PurityStick.DisplayName: Purity Stick
 		}
 	}
 }
