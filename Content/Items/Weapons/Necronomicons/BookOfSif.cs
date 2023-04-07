@@ -259,7 +259,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/DayBloomGlow");
             Color color = Color.Lerp(Color.White, Color.Yellow, 20f);
             var bloom = color;
-            bloom.A = 10;
+            bloom.A = 0;
             Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 1.5f, SpriteEffects.None, 0);
             return true;
         }
@@ -297,7 +297,28 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             Dust blinkroot = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.DesertTorch, 0, 0, 50, default(Color), 1.5f);
             blinkroot.noGravity = true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
+        {
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BlinkrootGlow");
+            Color color = Color.Lerp(Color.White, Color.Red, 20f);
+            var bloom = color;
+            bloom.A = 0;
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 1.5f, SpriteEffects.None, 0);
+            return true;
+        }
+        public override void Kill(int timeLeft)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Vector2 speed = Main.rand.NextVector2CircularEdge(0.75f, 0.75f);
+                Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.OrangeTorch, speed * 4f, Scale: 2.5f);
+                d.noGravity = true;
+                Vector2 speed2 = Main.rand.NextVector2CircularEdge(0.5f, 0.5f);
+                Dust e = Dust.NewDustPerfect(Projectile.Center, DustID.GreenBlood, speed2 * 4f, Scale: 1.5f);
+                e.noGravity = true;
+            }
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             for (int d = 0; d < 10; d++)
             {
@@ -332,14 +353,36 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             Dust deathweed = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.CorruptTorch, 0, 0, 50, default(Color), 1.5f);
             deathweed.noGravity = true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
         {
-            for (int d = 0; d < 7; d++)
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/DeathweedGlow");
+            Color color = Color.Lerp(Color.Purple, Color.DarkRed, 20f);
+            Color color2 = Color.Lerp(color, Color.White, 20f);
+            var bloom = color2;
+            bloom.A = 0;
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 1.5f, SpriteEffects.None, 0);
+            return true;
+        }
+        public override void Kill(int timeLeft)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Vector2 speed = Main.rand.NextVector2CircularEdge(0.75f, 0.75f);
+                Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.Blood, speed * 4f, Scale: 1.5f);
+                d.noGravity = true;
+                Vector2 speed2 = Main.rand.NextVector2CircularEdge(0.5f, 0.5f);
+                Dust e = Dust.NewDustPerfect(Projectile.Center, DustID.PurpleTorch, speed2 * 4f, Scale: 2.5f);
+                e.noGravity = true;
+            }
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            for (int d = 0; d < 5; d++)
             {
                 Dust blood = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Blood, 0, 0, 50, default(Color), 2f);
                 blood.noGravity = true;
             }
-            for (int d = 0; d < 3; d++)
+            for (int d = 0; d < 2; d++)
             {
                 Dust deathweed = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.CorruptTorch, 0, 0, 50, default(Color), 1.5f);
                 deathweed.noGravity = true;
@@ -372,7 +415,29 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             Dust firebloom = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0, 0, 50, default(Color), 1.5f);
             firebloom.noGravity = true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
+        {
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/FireblossomGlow");
+            Color color = Color.Lerp(Color.Orange, Color.OrangeRed, 20f);
+            Color color2 = Color.Lerp(color, Color.White, 20f);
+            var bloom = color2;
+            bloom.A = 10;
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 1.5f, SpriteEffects.None, 0);
+            return true;
+        }
+        public override void Kill(int timeLeft)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Vector2 speed = Main.rand.NextVector2CircularEdge(0.75f, 0.75f);
+                Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.OrangeTorch, speed * 4f, Scale: 2.5f);
+                d.noGravity = true;
+                Vector2 speed2 = Main.rand.NextVector2CircularEdge(0.5f, 0.5f);
+                Dust e = Dust.NewDustPerfect(Projectile.Center, DustID.Torch, speed2 * 4f, Scale: 2.5f);
+                e.noGravity = true;
+            }
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.OnFire, 150);
             for (int d = 0; d < 7; d++)
@@ -413,7 +478,28 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             Dust moonglow = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.BlueFairy, 0, 0, 50, default(Color), 1.5f);
             moonglow.noGravity = true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
+        {
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/MoonglowGlow");
+            Color color = Color.Lerp(Color.White, Color.LightSkyBlue, 20f);
+            var bloom = color;
+            bloom.A = 10;
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 1.5f, SpriteEffects.None, 0);
+            return true;
+        }
+        public override void Kill(int timeLeft)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Vector2 speed = Main.rand.NextVector2CircularEdge(0.75f, 0.75f);
+                Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.BlueCrystalShard, speed * 4f, Scale: 1.5f);
+                d.noGravity = true;
+                Vector2 speed2 = Main.rand.NextVector2CircularEdge(0.5f, 0.5f);
+                Dust e = Dust.NewDustPerfect(Projectile.Center, DustID.GreenFairy, speed2 * 4f, Scale: 1.5f);
+                e.noGravity = true;
+            }
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             for (int d = 0; d < 10; d++)
             {
@@ -448,7 +534,17 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             Dust shiverthorn = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.IceTorch, 0, 0, 50, default(Color), 1.5f);
             shiverthorn.noGravity = true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
+        {
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/ShiverthornGlow");
+            Color color = Color.Lerp(Color.LightBlue, Color.CadetBlue, 20f);
+            Color color2 = Color.Lerp(color, Color.White, 20f);
+            var bloom = color2;
+            bloom.A = 10;
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 1.5f, SpriteEffects.None, 0);
+            return true;
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Frostburn, 150);
             for (int d = 0; d < 7; d++)
@@ -466,6 +562,10 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         {
             float damage2 = (float)(damage * 0.6);
             damage = (int)damage2;
+        }
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        {
+            modifiers.FinalDamage *= 0.6f;
         }
     }
     public class Waterleaf : ModProjectile
@@ -489,7 +589,28 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             Dust waterleaf = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Water, 0, 0, 50, default(Color), 1.5f);
             waterleaf.noGravity = true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
+        {
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/WaterleafGlow");
+            Color color = Color.Lerp(Color.White, Color.Aquamarine, 20f);
+            var bloom = color;
+            bloom.A = 10;
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 1.5f, SpriteEffects.None, 0);
+            return true;
+        }
+        public override void Kill(int timeLeft)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Vector2 speed = Main.rand.NextVector2CircularEdge(0.75f, 0.75f);
+                Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.Water, speed * 4f, Scale: 1.5f);
+                d.noGravity = true;
+                Vector2 speed2 = Main.rand.NextVector2CircularEdge(0.5f, 0.5f);
+                Dust e = Dust.NewDustPerfect(Projectile.Center, DustID.GreenFairy, speed2 * 4f, Scale: 1.5f);
+                e.noGravity = true;
+            }
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             for (int d = 0; d < 7; d++)
             {
