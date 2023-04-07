@@ -192,6 +192,13 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         // Here you can check it https://github.com/tModLoader/tModLoader/wiki/Basic-Projectile#horizontal-sprite-example
         public override bool PreDraw(ref Color lightColor)
         {
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSifProjGlow");
+            Color color2 = Color.Lerp(Color.ForestGreen, Color.Yellow, 20f);
+            Color color = Color.Lerp(Color.White, color2, 20f);
+            var bloom = color;
+            bloom.A = 0;
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 1.3f, SpriteEffects.None, 0);
+            return true;
             // SpriteEffects helps to flip texture horizontally and vertically
             SpriteEffects spriteEffects = SpriteEffects.None;
             if (Projectile.spriteDirection == -1)
@@ -318,7 +325,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
                 e.noGravity = true;
             }
         }
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             for (int d = 0; d < 10; d++)
             {
@@ -375,7 +382,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
                 e.noGravity = true;
             }
         }
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             for (int d = 0; d < 5; d++)
             {
@@ -437,7 +444,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
                 e.noGravity = true;
             }
         }
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(BuffID.OnFire, 150);
             for (int d = 0; d < 7; d++)
@@ -499,7 +506,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
                 e.noGravity = true;
             }
         }
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             for (int d = 0; d < 10; d++)
             {
@@ -544,7 +551,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 1.5f, SpriteEffects.None, 0);
             return true;
         }
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(BuffID.Frostburn, 150);
             for (int d = 0; d < 7; d++)
@@ -562,10 +569,6 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         {
             float damage2 = (float)(damage * 0.6);
             damage = (int)damage2;
-        }
-        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
-        {
-            modifiers.FinalDamage *= 0.6f;
         }
     }
     public class Waterleaf : ModProjectile
@@ -610,7 +613,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
                 e.noGravity = true;
             }
         }
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             for (int d = 0; d < 7; d++)
             {
