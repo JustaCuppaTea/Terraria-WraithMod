@@ -196,7 +196,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             Color color2 = Color.Lerp(Color.White, color, 20f);
             var bloom = color2;
             bloom.A = 0;
-            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 1.5f, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 1.3f, SpriteEffects.None, 0);
             // SpriteEffects helps to flip texture horizontally and vertically
             SpriteEffects spriteEffects = SpriteEffects.None;
             if (Projectile.spriteDirection == -1)
