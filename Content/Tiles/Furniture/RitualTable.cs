@@ -32,7 +32,7 @@ namespace WraithMod.Content.Tiles.Furniture
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 
             // Etc
-            ModTranslation name = CreateMapEntryName();
+            LocalizedText name = CreateMapEntryName();
             AddMapEntry(new Color(200, 100, 50), name);
         }
 

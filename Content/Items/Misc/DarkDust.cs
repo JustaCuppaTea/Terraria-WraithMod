@@ -19,8 +19,8 @@ namespace WraithMod.Content.Items.Misc
 
             ItemID.Sets.ItemIconPulse[Item.type] = true; // The item pulses while in the player's inventory
             ItemID.Sets.ItemNoGravity[Item.type] = true; // Makes the item have no gravity
-            DisplayName.SetDefault("Evil Essence");
-            Tooltip.SetDefault("Infused with both evils of the terraria world.");
+            // DisplayName.SetDefault("Evil Essence");
+            // Tooltip.SetDefault("Infused with both evils of the terraria world.");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25; // How many items are needed in order to research duplication of this item in Journey mode. See https://terraria.gamepedia.com/Journey_Mode/Research_list for a list of commonly used research amounts depending on item type.
         }
 

@@ -21,7 +21,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Causes meteorites to fall from the sky. Right clicking causes you to call a massive asteroid from the sky with a cooldown.\nLifecost " + LifeCost);
+            // Tooltip.SetDefault("Causes meteorites to fall from the sky. Right clicking causes you to call a massive asteroid from the sky with a cooldown.\nLifecost " + LifeCost);
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -221,7 +221,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes
             return false;
 
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Once++;
             if (Once <= 1)
@@ -290,7 +290,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes
             return false;
 
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.LocalPlayer;
             Once2++;
@@ -319,8 +319,8 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Asteroid Cooldown");
-            Description.SetDefault("You cannot call down any asteroids yet.");
+            // DisplayName.SetDefault("Asteroid Cooldown");
+            // Description.SetDefault("You cannot call down any asteroids yet.");
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;

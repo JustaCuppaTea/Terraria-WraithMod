@@ -14,8 +14,8 @@ namespace WraithMod.Content.Items.Armour
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-            DisplayName.SetDefault("Apprentice Robe");
-            Tooltip.SetDefault("Increases life regen by 4.");
+            // DisplayName.SetDefault("Apprentice Robe");
+            // Tooltip.SetDefault("Increases life regen by 4.");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

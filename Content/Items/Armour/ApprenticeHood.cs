@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
@@ -10,7 +11,6 @@ using WraithMod.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Shaders;
-using IL.Terraria.GameContent.Bestiary;
 using WraithMod.Content.BaseClasses;
 
 namespace WraithMod.Content.Items.Armour
@@ -22,7 +22,7 @@ namespace WraithMod.Content.Items.Armour
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Increases movement speed by 15%.");
+            // Tooltip.SetDefault("Increases movement speed by 15%.");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
 
@@ -133,8 +133,8 @@ namespace WraithMod.Content.Items.Armour
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Invicibility Cooldown");
-            Description.SetDefault("You cannot turn invincible yet.");
+            // DisplayName.SetDefault("Invicibility Cooldown");
+            // Description.SetDefault("You cannot turn invincible yet.");
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;

@@ -15,8 +15,8 @@ namespace WraithMod.Content.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Contained Blood");
-            Tooltip.SetDefault("Contains human blood.");
+            // DisplayName.SetDefault("Contained Blood");
+            // Tooltip.SetDefault("Contains human blood.");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25; // How many items are needed in order to research duplication of this item in Journey mode. See https://terraria.gamepedia.com/Journey_Mode/Research_list for a list of commonly used research amounts depending on item type.
         }
 

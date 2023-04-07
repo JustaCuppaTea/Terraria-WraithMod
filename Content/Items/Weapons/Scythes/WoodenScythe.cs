@@ -19,7 +19,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Shoots out a spinning scythe\nLifecost " + LifeCost);
+            // Tooltip.SetDefault("Shoots out a spinning scythe\nLifecost " + LifeCost);
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

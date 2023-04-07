@@ -24,8 +24,8 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         public static int TimeUse;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Book of Sif I");
-            Tooltip.SetDefault("Summons a necronomicon of Sif that summons the power of nature to aid you, shooting dayblooms and other herbs at your mouse.\nBlood Sacrifice " + LifeCost);
+            // DisplayName.SetDefault("Book of Sif I");
+            // Tooltip.SetDefault("Summons a necronomicon of Sif that summons the power of nature to aid you, shooting dayblooms and other herbs at your mouse.\nBlood Sacrifice " + LifeCost);
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -82,7 +82,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             {
                 DeathMessage = " forgot to heal.";
             }
-            player.Hurt(PlayerDeathReason.ByCustomReason(player.name + DeathMessage), LifeCost, 0, false, true, false, -1);
+            player.Hurt(PlayerDeathReason.ByCustomReason(player.name + DeathMessage), LifeCost, 0, false, true, -1, false, 1000, 2, 0);
             player.immuneTime = 0;
             return true;
         }
@@ -297,7 +297,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             Dust blinkroot = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.DesertTorch, 0, 0, 50, default(Color), 1.5f);
             blinkroot.noGravity = true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             for (int d = 0; d < 10; d++)
             {
@@ -305,10 +305,11 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
                 blinkroot.noGravity = true;
             }
         }
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            float damage2 = (float)(damage * 1.3);
-            damage = (int)damage2;
+            modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
+                hitInfo.Damage *= (int)1.3f;
+            };
         }
     }
     public class Deathweed : ModProjectile
@@ -332,7 +333,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             Dust deathweed = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.CorruptTorch, 0, 0, 50, default(Color), 1.5f);
             deathweed.noGravity = true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             for (int d = 0; d < 7; d++)
             {
@@ -345,13 +346,13 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
                 deathweed.noGravity = true;
             }
         }
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            float damage2 = (float)(damage * 0.8);
-            damage = (int)damage2;
+            modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
+                hitInfo.Damage *= (int)0.8f;
+            };
         }
-    }
-    public class Fireblossom : ModProjectile
+        public class Fireblossom : ModProjectile
     {
         public override void SetDefaults()
         {
@@ -372,7 +373,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             Dust firebloom = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0, 0, 50, default(Color), 1.5f);
             firebloom.noGravity = true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.OnFire, 150);
             for (int d = 0; d < 7; d++)
@@ -386,12 +387,13 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
                 firebloom.noGravity = true;
             }
         }
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            float damage2 = (float)(damage * 0.6);
-            damage = (int)damage2;
+            public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+            {
+                modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
+                    hitInfo.Damage *= (int)0.6f;
+                };
+            }
         }
-    }
     public class Moonglow : ModProjectile
     {
         public override void SetDefaults()
@@ -413,7 +415,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             Dust moonglow = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.BlueFairy, 0, 0, 50, default(Color), 1.5f);
             moonglow.noGravity = true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             for (int d = 0; d < 10; d++)
             {
@@ -421,12 +423,13 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
                 moonglow.noGravity = true;
             }
         }
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            float damage2 = (float)(damage * 1.1);
-            damage = (int)damage2;
+            public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+            {
+                modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
+                    hitInfo.Damage *= (int)1.1f;
+                };
+            }
         }
-    }
     public class Shiverthorn : ModProjectile
     {
         public override void SetDefaults()
@@ -448,7 +451,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             Dust shiverthorn = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.IceTorch, 0, 0, 50, default(Color), 1.5f);
             shiverthorn.noGravity = true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Frostburn, 150);
             for (int d = 0; d < 7; d++)
@@ -462,10 +465,12 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
                 firebloom.noGravity = true;
             }
         }
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            float damage2 = (float)(damage * 0.6);
-            damage = (int)damage2;
+            public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+            {
+                modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
+                    hitInfo.Damage *= (int)0.6f;
+                };
+            }
         }
     }
     public class Waterleaf : ModProjectile
@@ -489,7 +494,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             Dust waterleaf = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Water, 0, 0, 50, default(Color), 1.5f);
             waterleaf.noGravity = true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             for (int d = 0; d < 7; d++)
             {
@@ -502,10 +507,12 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
                 sand.noGravity = true;
             }
         }
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            float damage2 = (float)(damage * 0.9);
-            damage = (int)damage2;
+            modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
+                hitInfo.Damage *= (int)0.9f;
+            };
         }
     }
+}
 }

@@ -23,7 +23,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Holding this item summons 2 creepers to aid you in your fight!\nAlso, swinging throws out an amalgamation of the eye and brain of cthulu that splits on death.\nLifecost " + LifeCost);
+            // Tooltip.SetDefault("Holding this item summons 2 creepers to aid you in your fight!\nAlso, swinging throws out an amalgamation of the eye and brain of cthulu that splits on death.\nLifecost " + LifeCost);
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -176,8 +176,8 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Creeper Minion");
-            Description.SetDefault("These creepers will help you in your battles!");
+            // DisplayName.SetDefault("Creeper Minion");
+            // Description.SetDefault("These creepers will help you in your battles!");
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
         }
@@ -301,7 +301,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
             // Use the SafeNormalize extension method to avoid NaNs returned by Vector2.Normalize when the vector is zero
             Projectile.velocity = (closestNPC.Center - Projectile.Center).SafeNormalize(Vector2.Zero) * projSpeed;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Confused, 60);
         }
@@ -347,7 +347,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Creeper Minion");
+            // DisplayName.SetDefault("Creeper Minion");
             // Sets the amount of frames this minion has on its spritesheet
             Main.projFrames[Projectile.type] = 4;
 

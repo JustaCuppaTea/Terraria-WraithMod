@@ -1,4 +1,5 @@
-﻿using Terraria.ModLoader;
+﻿using Terraria.Graphics.Effects;
+using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -13,7 +14,6 @@ using System.IO;
 using Terraria.Enums;
 using Terraria.GameContent.Shaders;
 using Terraria.GameContent;
-using IL.Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 using Terraria.Audio;
 using WraithMod.Content.Items.Misc;
@@ -29,7 +29,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Hit enemies get lit on fire, hitting enemies that are on fire deals more damage. Summons a magma eye that shoots fire beams at nearby enemies.\nLifecost " + LifeCost);
+            // Tooltip.SetDefault("Hit enemies get lit on fire, hitting enemies that are on fire deals more damage. Summons a magma eye that shoots fire beams at nearby enemies.\nLifecost " + LifeCost);
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -118,7 +118,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
                 .AddTile(TileID.Hellforge)
                 .Register();
         }
-        public override void ModifyHitNPC(Player player, NPC target, ref int damage, ref float knockBack, ref bool crit)
+        public override void ModifyHitNPC(Player player, NPC target, ref NPC.HitModifiers modifiers)
         {
             target.AddBuff(BuffID.OnFire3, 120);
             target.AddBuff(BuffID.OnFire, 240);
@@ -133,8 +133,8 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Magma Eye");
-            Description.SetDefault("This magma eye will help you in your battles!");
+            // DisplayName.SetDefault("Magma Eye");
+            // Description.SetDefault("This magma eye will help you in your battles!");
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
         }
@@ -161,7 +161,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
         }
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Magma Eye Minion");
+            // DisplayName.SetDefault("Magma Eye Minion");
             // Sets the amount of frames this minion has on its spritesheet
             Main.projFrames[Projectile.type] = 4;
 
@@ -199,7 +199,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
         }
 
         // This is mandatory if your minion deals contact damage (further related stuff in AI() in the Movement region)
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.OnFire3, 120);
             target.AddBuff(BuffID.OnFire, 240);

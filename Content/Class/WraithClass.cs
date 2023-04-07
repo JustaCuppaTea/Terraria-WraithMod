@@ -14,7 +14,7 @@ namespace WraithMod.Content.Class
 
         public override void SetStaticDefaults()
         {
-            ClassName.SetDefault("dark damage");
+            // DisplayName.SetDefault("dark damage");
         }
 
         public override StatInheritanceData GetModifierInheritance(DamageClass damageClass)

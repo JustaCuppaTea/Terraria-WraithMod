@@ -14,8 +14,8 @@ namespace WraithMod.Content.Buffs
         public static bool Active;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Rage");
-            Description.SetDefault("Defense decreased by 10% however, damage is increased by 10%.");
+            // DisplayName.SetDefault("Rage");
+            // Description.SetDefault("Defense decreased by 10% however, damage is increased by 10%.");
         }
         public override void Update(Player player, ref int buffIndex)
         {

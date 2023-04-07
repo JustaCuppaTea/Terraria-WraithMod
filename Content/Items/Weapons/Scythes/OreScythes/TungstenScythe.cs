@@ -21,7 +21,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Shoots out a few tungsten coins that home onto enemies.\nLifecost " + LifeCost);
+            // Tooltip.SetDefault("Shoots out a few tungsten coins that home onto enemies.\nLifecost " + LifeCost);
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

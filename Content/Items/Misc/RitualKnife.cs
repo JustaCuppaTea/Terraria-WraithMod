@@ -14,7 +14,7 @@ namespace WraithMod.Content.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Deals damage to you and if you have a bottle in your inventory, fills the bottle with blood, if you have no bottle in your inventory, you lose blood with no reward."); // The (English) text shown below your weapon's name.
+            // Tooltip.SetDefault("Deals damage to you and if you have a bottle in your inventory, fills the bottle with blood, if you have no bottle in your inventory, you lose blood with no reward."); // The (English) text shown below your weapon's name.
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -88,7 +88,7 @@ namespace WraithMod.Content.Items.Misc
             }
         }
 
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             // Inflict the OnFire debuff for 1 second onto any NPC/Monster that this hits.
             // 60 frames = 1 second

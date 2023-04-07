@@ -14,7 +14,7 @@ namespace WraithMod.Content.Class
 
         public override void SetStaticDefaults()
         {
-            ClassName.SetDefault("ritual cost");
+            // DisplayName.SetDefault("ritual cost");
         }
 
         public override StatInheritanceData GetModifierInheritance(DamageClass damageClass)

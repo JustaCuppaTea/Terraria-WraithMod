@@ -22,8 +22,8 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Gold Scythe");
-            Tooltip.SetDefault("Shoots out a lot of golden coins that home onto enemies quickly.\nLifecost " + LifeCost);
+            // DisplayName.SetDefault("Gold Scythe");
+            // Tooltip.SetDefault("Shoots out a lot of golden coins that home onto enemies quickly.\nLifecost " + LifeCost);
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

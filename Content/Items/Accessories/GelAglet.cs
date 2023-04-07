@@ -13,7 +13,7 @@ namespace WraithMod.Content.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Decreases life cost by 2 and increases movement speed by 5%.\n\"Absorbs darkness of evil items.\"");
+            // Tooltip.SetDefault("Decreases life cost by 2 and increases movement speed by 5%.\n\"Absorbs darkness of evil items.\"");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

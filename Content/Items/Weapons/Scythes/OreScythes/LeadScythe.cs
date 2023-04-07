@@ -23,8 +23,8 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lead Scythe");
-            Tooltip.SetDefault("Sometimes creates an anvil at the position of the mouse.\nLifecost " + LifeCost);
+            // DisplayName.SetDefault("Lead Scythe");
+            // Tooltip.SetDefault("Sometimes creates an anvil at the position of the mouse.\nLifecost " + LifeCost);
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

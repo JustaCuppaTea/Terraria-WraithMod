@@ -22,7 +22,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Shoots out a couple copper coins that home onto enemies weakly.\nLifecost " + LifeCost);
+            // Tooltip.SetDefault("Shoots out a couple copper coins that home onto enemies weakly.\nLifecost " + LifeCost);
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

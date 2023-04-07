@@ -23,7 +23,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Holding this item summons 2 Shadow amalgamates to aid you in your fight!\nAlso, swinging shoots out mini eaters.\nLifecost " + LifeCost);
+            // Tooltip.SetDefault("Holding this item summons 2 Shadow amalgamates to aid you in your fight!\nAlso, swinging shoots out mini eaters.\nLifecost " + LifeCost);
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -118,8 +118,8 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Shadow Amalgamate Minion");
-            Description.SetDefault("These shadow amalgamations will help you in your battles!");
+            // DisplayName.SetDefault("Shadow Amalgamate Minion");
+            // Description.SetDefault("These shadow amalgamations will help you in your battles!");
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
         }
@@ -142,7 +142,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Shadow Ball Minion");
+            // DisplayName.SetDefault("Shadow Ball Minion");
             // Sets the amount of frames this minion has on its spritesheet
             Main.projFrames[Projectile.type] = 4;
 
