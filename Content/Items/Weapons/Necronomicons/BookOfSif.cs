@@ -179,9 +179,8 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
                     yellow.noGravity = true;
                 }
                 SoundEngine.PlaySound(SoundID.MaxMana);
-                //int type2 = Main.rand.Next(new int[] { ModContent.ProjectileType<Blinkroot>(), ModContent.ProjectileType<Daybloom>(), ModContent.ProjectileType<Deathweed>(), ModContent.ProjectileType<Fireblossom>(), ModContent.ProjectileType<Moonglow>(), ModContent.ProjectileType<Shiverthorn>(), ModContent.ProjectileType<Waterleaf>()});
-                //Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, type2, Projectile.damage, Projectile.knockBack, Projectile.owner);
-                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<Daybloom>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                int type2 = Main.rand.Next(new int[] { ModContent.ProjectileType<Blinkroot>(), ModContent.ProjectileType<Daybloom>(), ModContent.ProjectileType<Deathweed>(), ModContent.ProjectileType<Fireblossom>(), ModContent.ProjectileType<Moonglow>(), ModContent.ProjectileType<Shiverthorn>(), ModContent.ProjectileType<Waterleaf>()});
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, type2, Projectile.damage, Projectile.knockBack, Projectile.owner);
                 Timer = 0;
             }
             Dust green2 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.GreenTorch, 0f, 0f, 150, default(Color), 1.5f);
