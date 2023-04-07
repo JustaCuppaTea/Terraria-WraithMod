@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "qX15KUc1JN8gJ+ozIE9jtU6H/g5RxMsb78TqYDkt0xG3S7q6YsHi+SJrlLmtSFWAnYRi1wxLYBkcsA8jpL85mQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\thoma\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\WraithMod\\WraithMod.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\thoma\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
+  ],
+  "logs": []
+}

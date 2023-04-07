@@ -1,0 +1,3 @@
+displayName = Wraith Class
+author = Tea
+version = 0.1
