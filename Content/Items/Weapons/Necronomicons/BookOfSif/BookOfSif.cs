@@ -664,10 +664,11 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif
         public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
         {
             Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/SifCircleGlow");
-            Color color = Color.Lerp(Color.White, Color.GreenYellow, 20f);
+            Color color2 = Color.Lerp(Color.Green, Color.GreenYellow, 20f);
+            Color color = Color.Lerp(color2, Color.Black, 0.5f);
             var bloom = color;
             bloom.A = 0;
-            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.9f, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.8f, SpriteEffects.None, 0);
             return true;
         }
     }
@@ -701,10 +702,11 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif
         public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
         {
             Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/SifPentaGlow");
-            Color color = Color.Lerp(Color.White, Color.GreenYellow, 20f);
+            Color color2 = Color.Lerp(Color.Green, Color.GreenYellow, 20f);
+            Color color = Color.Lerp(color2, Color.Black, 0.5f);
             var bloom = color;
             bloom.A = 0;
-            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.9f, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.8f, SpriteEffects.None, 0);
             return true;
         }
     }
@@ -738,10 +740,11 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif
         public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
         {
             Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/SifExtraCirclesGlow");
-            Color color = Color.Lerp(Color.White, Color.GreenYellow, 20f);
+            Color color2 = Color.Lerp(Color.Green, Color.GreenYellow, 20f);
+            Color color = Color.Lerp(color2, Color.Black, 0.5f);
             var bloom = color;
             bloom.A = 0;
-            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.9f, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.8f, SpriteEffects.None, 0);
             return true;
         }
     }
