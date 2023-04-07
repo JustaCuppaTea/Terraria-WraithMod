@@ -191,6 +191,12 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         // Here you can check it https://github.com/tModLoader/tModLoader/wiki/Basic-Projectile#horizontal-sprite-example
         public override bool PreDraw(ref Color lightColor)
         {
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSifProjGlow");
+            Color color = Color.Lerp(Color.ForestGreen, Color.Yellow, 20f);
+            Color color2 = Color.Lerp(Color.White, color, 20f);
+            var bloom = color2;
+            bloom.A = 0;
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 1.5f, SpriteEffects.None, 0);
             // SpriteEffects helps to flip texture horizontally and vertically
             SpriteEffects spriteEffects = SpriteEffects.None;
             if (Projectile.spriteDirection == -1)
