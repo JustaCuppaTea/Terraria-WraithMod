@@ -307,9 +307,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         }
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
-                hitInfo.Damage *= (int)1.3f;
-            };
+            modifiers.FinalDamage *= 1.3f;
         }
     }
     public class Deathweed : ModProjectile
@@ -348,9 +346,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         }
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
-                hitInfo.Damage *= (int)0.8f;
-            };
+            modifiers.FinalDamage *= 0.8f;
         }
         public class Fireblossom : ModProjectile
     {
@@ -389,9 +385,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         }
             public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
             {
-                modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
-                    hitInfo.Damage *= (int)0.6f;
-                };
+                modifiers.FinalDamage *= 0.6f;
             }
         }
     public class Moonglow : ModProjectile
@@ -425,9 +419,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         }
             public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
             {
-                modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
-                    hitInfo.Damage *= (int)1.1f;
-                };
+                modifiers.FinalDamage *= 1.1f;
             }
         }
     public class Shiverthorn : ModProjectile
@@ -467,9 +459,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         }
             public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
             {
-                modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
-                    hitInfo.Damage *= (int)0.6f;
-                };
+                modifiers.FinalDamage *= 0.6f;
             }
         }
     }
@@ -509,9 +499,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         }
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
-                hitInfo.Damage *= (int)0.9f;
-            };
+            modifiers.FinalDamage *= 0.9f;
         }
     }
 }

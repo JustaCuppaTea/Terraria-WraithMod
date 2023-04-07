@@ -125,9 +125,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
             target.AddBuff(BuffID.OnFire, 240);
             if (target.HasBuff(BuffID.OnFire) || target.HasBuff(BuffID.OnFire3))
             {
-                modifiers.ModifyHitInfo += (ref NPC.HitInfo hitInfo) => {
-                    hitInfo.Damage *= (int)1.2f;
-                };
+                modifiers.FinalDamage *= 1.2f;
             }
         }
     }
