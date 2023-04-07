@@ -50,11 +50,19 @@ Mods: {
 			RitualTable.DisplayName: Ritual Table
 
 			BookOfSif: {
-				DisplayName: Book of Sif I
+				DisplayName: Book of Sif: Nature I
 				Tooltip:
 					'''
 					Summons a necronomicon of Sif that summons the power of nature to aid you, shooting dayblooms and other herbs at your mouse.
 					Blood Sacrifice 30
+					'''
+			}
+			BookOfEir: {
+				DisplayName: Book of Eir: Healing I
+				Tooltip:
+					'''
+					Summons a necronomicon that heals you slowly.
+					Blood Sacrifice 34
 					'''
 			}
 

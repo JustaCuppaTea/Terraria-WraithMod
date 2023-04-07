@@ -17,7 +17,7 @@ using WraithMod.Content.Class;
 using WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes;
 using WraithMod.Content.Tiles.Furniture;
 
-namespace WraithMod.Content.Items.Weapons.Necronomicons
+namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif
 {
     public class BookOfSif : BaseScythe
     {
@@ -64,6 +64,9 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
         public override bool? UseItem(Player player)
         {
+            Projectile.NewProjectile(Item.GetSource_FromThis(), Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<SifCircle>(), 0, 0, player.whoAmI);
+            Projectile.NewProjectile(Item.GetSource_FromThis(), Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<SifPenta>(), 0, 0, player.whoAmI);
+            Projectile.NewProjectile(Item.GetSource_FromThis(), Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<SifExtraCircles>(), 0, 0, player.whoAmI);
             string DeathMessage = "";
             int decider = Main.rand.Next(4);
             if (decider == 0)
@@ -130,12 +133,12 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         {
             for (int d = 0; d < 50; d++)
             {
-                Dust yellow = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.YellowTorch, 0f, 0f, 150, default(Color), 1.5f);
+                Dust yellow = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.YellowTorch, 0f, 0f, 150, default, 1.5f);
                 yellow.noGravity = true;
             }
             for (int d = 0; d < 50; d++)
             {
-                Dust green = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.GreenTorch, 0f, 0f, 150, default(Color), 1.5f);
+                Dust green = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.GreenTorch, 0f, 0f, 150, default, 1.5f);
                 green.noGravity = true;
             }
         }
@@ -175,15 +178,15 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
                 // SoundEngine.PlaySound, Dust.NewDust, Projectile.NewProjectile, etc. Up to you.
                 for (int d = 0; d < 10; d++)
                 {
-                    Dust yellow = Dust.NewDustDirect(Projectile.Center, Projectile.width, Projectile.height, DustID.YellowTorch, 0f, 0f, 150, default(Color), 1.5f);
+                    Dust yellow = Dust.NewDustDirect(Projectile.Center, Projectile.width, Projectile.height, DustID.YellowTorch, 0f, 0f, 150, default, 1.5f);
                     yellow.noGravity = true;
                 }
                 SoundEngine.PlaySound(SoundID.MaxMana);
-                int type2 = Main.rand.Next(new int[] { ModContent.ProjectileType<Blinkroot>(), ModContent.ProjectileType<Daybloom>(), ModContent.ProjectileType<Deathweed>(), ModContent.ProjectileType<Fireblossom>(), ModContent.ProjectileType<Moonglow>(), ModContent.ProjectileType<Shiverthorn>(), ModContent.ProjectileType<Waterleaf>()});
+                int type2 = Main.rand.Next(new int[] { ModContent.ProjectileType<Blinkroot>(), ModContent.ProjectileType<Daybloom>(), ModContent.ProjectileType<Deathweed>(), ModContent.ProjectileType<Fireblossom>(), ModContent.ProjectileType<Moonglow>(), ModContent.ProjectileType<Shiverthorn>(), ModContent.ProjectileType<Waterleaf>() });
                 Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, type2, Projectile.damage, Projectile.knockBack, Projectile.owner);
                 Timer = 0;
             }
-            Dust green2 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.GreenTorch, 0f, 0f, 150, default(Color), 1.5f);
+            Dust green2 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.GreenTorch, 0f, 0f, 150, default, 1.5f);
             green2.noGravity = true;
         }
         // Some advanced drawing because the texture image isn't centered or symetrical
@@ -191,7 +194,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         // Here you can check it https://github.com/tModLoader/tModLoader/wiki/Basic-Projectile#horizontal-sprite-example
         public override bool PreDraw(ref Color lightColor)
         {
-            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSifProjGlow");
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/BookOfSifProjGlow");
             Color color = Color.Lerp(Color.ForestGreen, Color.Yellow, 20f);
             Color color2 = Color.Lerp(Color.White, color, 20f);
             var bloom = color2;
@@ -221,7 +224,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             // If image isn't centered or symmetrical you can specify origin of the sprite
             // (0,0) for the upper-left corner
             float offsetX = 20f;
-            origin.X = (float)(Projectile.spriteDirection == 1 ? sourceRectangle.Width - offsetX : offsetX);
+            origin.X = Projectile.spriteDirection == 1 ? sourceRectangle.Width - offsetX : offsetX;
 
             // If sprite is vertical
             // float offsetY = 20f;
@@ -252,16 +255,16 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         }
         public override void AI()
         {
-            Projectile.rotation += 0.4f * (float)Projectile.direction;
+            Projectile.rotation += 0.4f * Projectile.direction;
             if (Projectile.owner == Main.myPlayer)
                 Projectile.velocity = Projectile.DirectionTo(Main.MouseWorld) * 12f;
             Player player = Main.player[Projectile.owner];
-            Dust daybloom = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.YellowTorch, 0, 0, 50, default(Color), 1.5f);
+            Dust daybloom = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.YellowTorch, 0, 0, 50, default, 1.5f);
             daybloom.noGravity = true;
         }
         public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
         {
-            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/DayBloomGlow");
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/DayBloomGlow");
             Color color = Color.Lerp(Color.White, Color.Yellow, 20f);
             var bloom = color;
             bloom.A = 0;
@@ -295,16 +298,16 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         }
         public override void AI()
         {
-            Projectile.rotation += 0.3f * (float)Projectile.direction;
+            Projectile.rotation += 0.3f * Projectile.direction;
             if (Projectile.owner == Main.myPlayer)
                 Projectile.velocity = Projectile.DirectionTo(Main.MouseWorld) * 7f;
             Player player = Main.player[Projectile.owner];
-            Dust blinkroot = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.DesertTorch, 0, 0, 50, default(Color), 1.5f);
+            Dust blinkroot = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.DesertTorch, 0, 0, 50, default, 1.5f);
             blinkroot.noGravity = true;
         }
         public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
         {
-            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BlinkrootGlow");
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/BlinkrootGlow");
             Color color = Color.Lerp(Color.White, Color.Red, 20f);
             var bloom = color;
             bloom.A = 0;
@@ -327,7 +330,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         {
             for (int d = 0; d < 10; d++)
             {
-                Dust blinkroot = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.DesertTorch, 0, 0, 50, default(Color), 1.5f);
+                Dust blinkroot = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.DesertTorch, 0, 0, 50, default, 1.5f);
                 blinkroot.noGravity = true;
             }
         }
@@ -350,16 +353,16 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         }
         public override void AI()
         {
-            Projectile.rotation += 0.5f * (float)Projectile.direction;
+            Projectile.rotation += 0.5f * Projectile.direction;
             if (Projectile.owner == Main.myPlayer)
                 Projectile.velocity = Projectile.DirectionTo(Main.MouseWorld) * 16f;
             Player player = Main.player[Projectile.owner];
-            Dust deathweed = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.CorruptTorch, 0, 0, 50, default(Color), 1.5f);
+            Dust deathweed = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.CorruptTorch, 0, 0, 50, default, 1.5f);
             deathweed.noGravity = true;
         }
         public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
         {
-            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/DeathweedGlow");
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/DeathweedGlow");
             Color color = Color.Lerp(Color.Purple, Color.DarkRed, 20f);
             Color color2 = Color.Lerp(color, Color.White, 20f);
             var bloom = color2;
@@ -383,12 +386,12 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         {
             for (int d = 0; d < 5; d++)
             {
-                Dust blood = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Blood, 0, 0, 50, default(Color), 2f);
+                Dust blood = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Blood, 0, 0, 50, default, 2f);
                 blood.noGravity = true;
             }
             for (int d = 0; d < 2; d++)
             {
-                Dust deathweed = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.CorruptTorch, 0, 0, 50, default(Color), 1.5f);
+                Dust deathweed = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.CorruptTorch, 0, 0, 50, default, 1.5f);
                 deathweed.noGravity = true;
             }
         }
@@ -411,16 +414,16 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         }
         public override void AI()
         {
-            Projectile.rotation += 0.5f * (float)Projectile.direction;
+            Projectile.rotation += 0.5f * Projectile.direction;
             if (Projectile.owner == Main.myPlayer)
                 Projectile.velocity = Projectile.DirectionTo(Main.MouseWorld) * 13f;
             Player player = Main.player[Projectile.owner];
-            Dust firebloom = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0, 0, 50, default(Color), 1.5f);
+            Dust firebloom = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0, 0, 50, default, 1.5f);
             firebloom.noGravity = true;
         }
         public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
         {
-            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/FireblossomGlow");
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/FireblossomGlow");
             Color color = Color.Lerp(Color.Orange, Color.OrangeRed, 20f);
             Color color2 = Color.Lerp(color, Color.White, 20f);
             var bloom = color2;
@@ -445,12 +448,12 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             target.AddBuff(BuffID.OnFire, 150);
             for (int d = 0; d < 7; d++)
             {
-                Dust ash = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Asphalt, 0, 0, 50, default(Color), 2f);
+                Dust ash = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Asphalt, 0, 0, 50, default, 2f);
                 ash.noGravity = true;
             }
             for (int d = 0; d < 3; d++)
             {
-                Dust firebloom = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0, 0, 50, default(Color), 1.5f);
+                Dust firebloom = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0, 0, 50, default, 1.5f);
                 firebloom.noGravity = true;
             }
         }
@@ -473,16 +476,16 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         }
         public override void AI()
         {
-            Projectile.rotation += 0.4f * (float)Projectile.direction;
+            Projectile.rotation += 0.4f * Projectile.direction;
             if (Projectile.owner == Main.myPlayer)
                 Projectile.velocity = Projectile.DirectionTo(Main.MouseWorld) * 10f;
             Player player = Main.player[Projectile.owner];
-            Dust moonglow = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.BlueFairy, 0, 0, 50, default(Color), 1.5f);
+            Dust moonglow = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.BlueFairy, 0, 0, 50, default, 1.5f);
             moonglow.noGravity = true;
         }
         public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
         {
-            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/MoonglowGlow");
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/MoonglowGlow");
             Color color = Color.Lerp(Color.White, Color.LightSkyBlue, 20f);
             var bloom = color;
             bloom.A = 10;
@@ -505,7 +508,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         {
             for (int d = 0; d < 10; d++)
             {
-                Dust moonglow = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.BlueFairy, 0, 0, 50, default(Color), 1.5f);
+                Dust moonglow = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.BlueFairy, 0, 0, 50, default, 1.5f);
                 moonglow.noGravity = true;
             }
         }
@@ -528,16 +531,16 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         }
         public override void AI()
         {
-            Projectile.rotation += 0.5f * (float)Projectile.direction;
+            Projectile.rotation += 0.5f * Projectile.direction;
             if (Projectile.owner == Main.myPlayer)
                 Projectile.velocity = Projectile.DirectionTo(Main.MouseWorld) * 13f;
             Player player = Main.player[Projectile.owner];
-            Dust shiverthorn = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.IceTorch, 0, 0, 50, default(Color), 1.5f);
+            Dust shiverthorn = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.IceTorch, 0, 0, 50, default, 1.5f);
             shiverthorn.noGravity = true;
         }
         public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
         {
-            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/ShiverthornGlow");
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/ShiverthornGlow");
             Color color = Color.Lerp(Color.LightBlue, Color.CadetBlue, 20f);
             Color color2 = Color.Lerp(color, Color.White, 20f);
             var bloom = color2;
@@ -550,12 +553,12 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
             target.AddBuff(BuffID.Frostburn, 150);
             for (int d = 0; d < 7; d++)
             {
-                Dust ice = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Ice, 0, 0, 50, default(Color), 2f);
+                Dust ice = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Ice, 0, 0, 50, default, 2f);
                 ice.noGravity = true;
             }
             for (int d = 0; d < 3; d++)
             {
-                Dust firebloom = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.IceTorch, 0, 0, 50, default(Color), 1.5f);
+                Dust firebloom = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.IceTorch, 0, 0, 50, default, 1.5f);
                 firebloom.noGravity = true;
             }
         }
@@ -590,16 +593,16 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         }
         public override void AI()
         {
-            Projectile.rotation += 0.5f * (float)Projectile.direction;
+            Projectile.rotation += 0.5f * Projectile.direction;
             if (Projectile.owner == Main.myPlayer)
                 Projectile.velocity = Projectile.DirectionTo(Main.MouseWorld) * 13f;
             Player player = Main.player[Projectile.owner];
-            Dust waterleaf = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Water, 0, 0, 50, default(Color), 1.5f);
+            Dust waterleaf = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Water, 0, 0, 50, default, 1.5f);
             waterleaf.noGravity = true;
         }
         public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
         {
-            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/WaterleafGlow");
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/WaterleafGlow");
             Color color = Color.Lerp(Color.White, Color.Aquamarine, 20f);
             var bloom = color;
             bloom.A = 10;
@@ -622,18 +625,130 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons
         {
             for (int d = 0; d < 7; d++)
             {
-                Dust waterleaf = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Water, 0, 0, 50, default(Color), 2f);
+                Dust waterleaf = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Water, 0, 0, 50, default, 2f);
                 waterleaf.noGravity = true;
             }
             for (int d = 0; d < 3; d++)
             {
-                Dust sand = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Sand, 0, 0, 50, default(Color), 1.5f);
+                Dust sand = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Sand, 0, 0, 50, default, 1.5f);
                 sand.noGravity = true;
             }
         }
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             modifiers.FinalDamage *= 0.9f;
+        }
+    }
+    public class SifCircle : ModProjectile
+    {
+        public override void SetDefaults()
+        {
+            Projectile.friendly = false;
+            Projectile.hostile = false;
+            Projectile.tileCollide = false;
+            Projectile.Size = new Vector2(128, 128);
+            Projectile.penetrate = -1;
+            Projectile.alpha = 255;
+            Projectile.aiStyle = 0;
+        }
+        public override void AI()
+        {
+
+            Player player = Main.player[Projectile.owner];
+            if (player.HeldItem.type != ModContent.ItemType<BookOfSif>())
+            {
+                Projectile.Kill();
+            }
+            Projectile.velocity = Vector2.Zero;
+            if (player.HeldItem.type == ModContent.ItemType<BookOfSif>())
+            {
+                Projectile.timeLeft += 10;
+            }
+            Projectile.rotation += 0.025f * Projectile.direction;
+            Projectile.Center = Main.MouseWorld;
+        }
+        public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
+        {
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/SifCircleGlow");
+            Color color = Color.Lerp(Color.White, Color.GreenYellow, 20f);
+            var bloom = color;
+            bloom.A = 0;
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.9f, SpriteEffects.None, 0);
+            return true;
+        }
+    }
+    public class SifPenta : ModProjectile
+    {
+        public override void SetDefaults()
+        {
+            Projectile.friendly = false;
+            Projectile.hostile = false;
+            Projectile.tileCollide = false;
+            Projectile.Size = new Vector2(112, 102);
+            Projectile.penetrate = -1;
+            Projectile.alpha = 255;
+            Projectile.aiStyle = 0;
+        }
+        public override void AI()
+        {
+            Player player = Main.player[Projectile.owner];
+            if (player.HeldItem.type != ModContent.ItemType<BookOfSif>())
+            {
+                Projectile.Kill();
+            }
+            Projectile.velocity = Vector2.Zero;
+            if (player.HeldItem.type == ModContent.ItemType<BookOfSif>())
+            {
+                Projectile.timeLeft += 10;
+            }
+            Projectile.rotation += 0.05f * Projectile.direction;
+            Projectile.Center = Main.MouseWorld;
+        }
+        public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
+        {
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/SifPentaGlow");
+            Color color = Color.Lerp(Color.White, Color.GreenYellow, 20f);
+            var bloom = color;
+            bloom.A = 0;
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.9f, SpriteEffects.None, 0);
+            return true;
+        }
+    }
+    public class SifExtraCircles : ModProjectile
+    {
+        public override void SetDefaults()
+        {
+            Projectile.friendly = false;
+            Projectile.hostile = false;
+            Projectile.tileCollide = false;
+            Projectile.Size = new Vector2(128, 128);
+            Projectile.penetrate = -1;
+            Projectile.alpha = 255;
+            Projectile.aiStyle = 0;
+        }
+        public override void AI()
+        {
+            Player player = Main.player[Projectile.owner];
+            if (player.HeldItem.type != ModContent.ItemType<BookOfSif>())
+            {
+                Projectile.Kill();
+            }
+            Projectile.velocity = Vector2.Zero;
+            if (player.HeldItem.type == ModContent.ItemType<BookOfSif>())
+            {
+                Projectile.timeLeft += 10;
+            }
+            Projectile.rotation += 0.05f * Projectile.direction;
+            Projectile.Center = Main.MouseWorld;
+        }
+        public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
+        {
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/SifExtraCirclesGlow");
+            Color color = Color.Lerp(Color.White, Color.GreenYellow, 20f);
+            var bloom = color;
+            bloom.A = 0;
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.9f, SpriteEffects.None, 0);
+            return true;
         }
     }
 }

@@ -189,6 +189,9 @@ Mods: {
 			TinCoin.DisplayName: Tin Coin
 			TungstenCoin.DisplayName: Tungsten Coin
 			PurityStick.DisplayName: Purity Stick
+			SifCircle.DisplayName: Sif Circle
+			SifPenta.DisplayName: Sif Penta
+			SifExtraCircles.DisplayName: Sif Extra Circles
 		}
 	}
 }
