@@ -673,7 +673,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif
         {
             Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/SifCircleGlow");
             Color color2 = Color.Lerp(Color.Green, Color.GreenYellow, 20f);
-            Color color = Color.Lerp(color2, Color.Black, 0.65f);
+            Color color = Color.Lerp(color2, Color.White, 0.5f);
             var bloom = color;
             bloom.A = 0;
             Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.8f, SpriteEffects.None, 0);
@@ -715,7 +715,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif
         {
             Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/SifPentaGlow");
             Color color2 = Color.Lerp(Color.Green, Color.GreenYellow, 20f);
-            Color color = Color.Lerp(color2, Color.Black, 0.65f);
+            Color color = Color.Lerp(color2, Color.White, 0.5f);
             var bloom = color;
             bloom.A = 0;
             Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.8f, SpriteEffects.None, 0);
@@ -757,7 +757,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif
         {
             Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfSif/SifExtraCirclesGlow");
             Color color2 = Color.Lerp(Color.Green, Color.GreenYellow, 20f);
-            Color color = Color.Lerp(color2, Color.Black, 0.65f);
+            Color color = Color.Lerp(color2, Color.White, 0.5f);
             var bloom = color;
             bloom.A = 0;
             Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.8f, SpriteEffects.None, 0);
