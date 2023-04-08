@@ -8,168 +8,229 @@
 
 Mods: {
 	WraithMod: {
-		MapObject.RitualTable: Ritual Table
-
-		Buffs: {
-			ShadowMinionBuff: {
-				Description: Mods.WraithMod.Buffs.ShadowMinionBuff.Description
-				DisplayName: Shadow Minion Buff
-			}
-
-			MagmaEyeMinionBuff: {
-				Description: Mods.WraithMod.Buffs.MagmaEyeMinionBuff.Description
-				DisplayName: Magma Eye Minion Buff
-			}
-
-			CreeperMinionBuff: {
-				Description: Mods.WraithMod.Buffs.CreeperMinionBuff.Description
-				DisplayName: Creeper Minion Buff
-			}
-
-			AsteroidCooldown: {
-				Description: Mods.WraithMod.Buffs.AsteroidCooldown.Description
-				DisplayName: Asteroid Cooldown
-			}
-
-			InvincibleCooldown: {
-				Description: Mods.WraithMod.Buffs.InvincibleCooldown.Description
-				DisplayName: Invincible Cooldown
-			}
-
-			Rage: {
-				Description: Mods.WraithMod.Buffs.Rage.Description
-				DisplayName: Rage
-			}
-
-			BloodSickness: {
-				Description: Mods.WraithMod.Buffs.BloodSickness.Description
-				DisplayName: Blood Sickness
-			}
-
-			BlessedHealth: {
-				Description: Mods.WraithMod.Buffs.BlessedHealth.Description
-				DisplayName: Blessed Health
-			}
-		}
-
 		Tiles.RitualTable.MapEntry: Ritual Table
-		"Keybinds.Armour Set Bonus.DisplayName": Mods.WraithMod.Keybinds.Armour Set Bonus.DisplayName
 
 		Items: {
-			BaseScythe: {
-				DisplayName: Base Scythe
-				Tooltip: ""
-			}
+			BaseScythe.DisplayName: Base Scythe
 
 			GelAglet: {
 				DisplayName: Gel Aglet
-				Tooltip: ""
+				Tooltip:
+					'''
+					Decreases life cost by 2 and increases movement speed by 5%.
+					"Absorbs darkness of evil items."
+					'''
 			}
 
 			ApprenticeHood: {
 				DisplayName: Apprentice Hood
-				Tooltip: ""
+				Tooltip: Increases movement speed by 15%.
 			}
 
 			ApprenticeRobe: {
 				DisplayName: Apprentice Robe
-				Tooltip: ""
+				Tooltip: Increases life regen by 4.
 			}
 
 			BloodContained: {
-				DisplayName: Blood Contained
-				Tooltip: ""
+				DisplayName: Contained Blood
+				Tooltip: Contains human blood.
 			}
 
 			DarkDust: {
-				DisplayName: Dark Dust
-				Tooltip: ""
+				DisplayName: Evil Essence
+				Tooltip: Infused with both evils of the terraria world.
 			}
 
 			RitualKnife: {
 				DisplayName: Ritual Knife
-				Tooltip: ""
+				Tooltip: Deals damage to you and if you have a bottle in your inventory, fills the bottle with blood, if you have no bottle in your inventory, you lose blood with no reward.
 			}
 
-			RitualTable: {
-				DisplayName: Ritual Table
-				Tooltip: ""
-			}
+			RitualTable.DisplayName: Ritual Table
 
 			BookOfSif: {
-				DisplayName: Book Of Sif
-				Tooltip: ""
+				DisplayName: Book of Sif: Nature I
+				Tooltip:
+					'''
+					Summons a necronomicon of Sif that summons the power of nature to aid you, shooting dayblooms and other herbs at your mouse.
+					Blood Sacrifice 30
+					'''
+			}
+			BookOfEir: {
+				DisplayName: Book of Eir: Healing I
+				Tooltip:
+					'''
+					Summons a necronomicon that heals you slowly.
+					Blood Sacrifice 34
+					'''
 			}
 
 			CopperScythe: {
 				DisplayName: Copper Scythe
-				Tooltip: ""
+				Tooltip:
+					'''
+					Shoots out a couple copper coins that home onto enemies weakly.
+					Lifecost 12
+					'''
 			}
 
 			GoldScythe: {
 				DisplayName: Gold Scythe
-				Tooltip: ""
+				Tooltip:
+					'''
+					Shoots out a lot of golden coins that home onto enemies quickly.
+					Lifecost 15
+					'''
 			}
 
 			IronScythe: {
 				DisplayName: Iron Scythe
-				Tooltip: ""
+				Tooltip:
+					'''
+					Sometimes creates an anvil at the position of the mouse.
+					Lifecost 14
+					'''
 			}
 
 			LeadScythe: {
 				DisplayName: Lead Scythe
-				Tooltip: ""
+				Tooltip:
+					'''
+					Sometimes creates an anvil at the position of the mouse.
+					Lifecost 14
+					'''
 			}
 
 			MeteoriteScythe: {
 				DisplayName: Meteorite Scythe
-				Tooltip: ""
+				Tooltip:
+					'''
+					Causes meteorites to fall from the sky. Right clicking causes you to call a massive asteroid from the sky with a cooldown.
+					Lifecost 16
+					'''
 			}
 
 			CrimtaneScythe: {
 				DisplayName: Crimtane Scythe
-				Tooltip: ""
+				Tooltip:
+					'''
+					Holding this item summons 2 creepers to aid you in your fight!
+					Also, swinging throws out an amalgamation of the eye and brain of cthulu that splits on death.
+					Lifecost 17
+					'''
 			}
 
 			DemoniteScythe: {
 				DisplayName: Demonite Scythe
-				Tooltip: ""
+				Tooltip:
+					'''
+					Holding this item summons 2 Shadow amalgamates to aid you in your fight!
+					Also, swinging shoots out mini eaters.
+					Lifecost 14
+					'''
 			}
 
 			HellstoneScythe: {
 				DisplayName: Hellstone Scythe
-				Tooltip: ""
+				Tooltip:
+					'''
+					Hit enemies get lit on fire, hitting enemies that are on fire deals more damage. Summons a magma eye that shoots fire beams at nearby enemies.
+					Lifecost 11
+					'''
 			}
 
 			PlatinumScythe: {
 				DisplayName: Platinum Scythe
-				Tooltip: ""
+				Tooltip:
+					'''
+					Shoots out a lot of golden coins that home onto enemies quickly.
+					Lifecost 15
+					'''
 			}
 
 			SilverScythe: {
 				DisplayName: Silver Scythe
-				Tooltip: ""
+				Tooltip:
+					'''
+					Shoots out a few silver coins that home onto enemies.
+					Lifecost 13
+					'''
 			}
 
 			TinScythe: {
 				DisplayName: Tin Scythe
-				Tooltip: ""
+				Tooltip:
+					'''
+					Shoots out a couple tin coins that home onto enemies weakly.
+					Lifecost 12
+					'''
 			}
 
 			TungstenScythe: {
 				DisplayName: Tungsten Scythe
-				Tooltip: ""
+				Tooltip:
+					'''
+					Shoots out a few tungsten coins that home onto enemies.
+					Lifecost 13
+					'''
 			}
 
 			WoodenScythe: {
 				DisplayName: Wooden Scythe
-				Tooltip: ""
+				Tooltip:
+					'''
+					Shoots out a spinning scythe
+					Lifecost 10
+					'''
+			}
+		}
+
+		Buffs: {
+
+			BloodSickness: {
+				DisplayName: Blood Sickness
+				Description: If you drink more blood you will be sick.
 			}
 
-			BookOfEir: {
-				DisplayName: Book Of Eir
-				Tooltip: ""
+			BlessedHealth: {
+				DisplayName: Blessed Heart
+				Description: You are regenerating your life with the blessing of Eir.
 			}
+			Rage: {
+				DisplayName: Rage
+				Description: Defense decreased by 10% however, damage is increased by 10%.
+			}
+
+			InvincibleCooldown: {
+				DisplayName: Invicibility Cooldown
+				Description: You cannot turn invincible yet.
+			}
+
+			AsteroidCooldown: {
+				DisplayName: Asteroid Cooldown
+				Description: You cannot call down any asteroids yet.
+			}
+
+			CreeperMinionBuff: {
+				DisplayName: Creeper Minion
+				Description: These creepers will help you in your battles!
+			}
+
+			MagmaEyeMinionBuff: {
+				DisplayName: Magma Eye
+				Description: This magma eye will help you in your battles!
+			}
+
+			ShadowMinionBuff: {
+				DisplayName: Shadow Amalgamate Minion
+				Description: These shadow amalgamations will help you in your battles!
+			}
+		}
+
+		DamageClasses: {
+			SacrificeClass.DisplayName: ritual cost
+			WraithClass.DisplayName: dark damage
 		}
 
 		Projectiles: {
@@ -192,17 +253,13 @@ Mods: {
 			EyeProj.DisplayName: Eye Proj
 			FireBeam.DisplayName: Fire Beam
 			FleshAmalgProj.DisplayName: Flesh Amalg Proj
-			MagmaEye.DisplayName: Magma Eye
-			ShadowMinion.DisplayName: Shadow Minion
+			MagmaEye.DisplayName: Magma Eye Minion
+			ShadowMinion.DisplayName: Shadow Ball Minion
 			PlatinumCoin.DisplayName: Platinum Coin
 			SilverCoin.DisplayName: Silver Coin
 			TinCoin.DisplayName: Tin Coin
 			TungstenCoin.DisplayName: Tungsten Coin
 			PurityStick.DisplayName: Purity Stick
-			SifCircle.DisplayName: Sif Circle
-			SifPenta.DisplayName: Sif Penta
-			SifExtraCircles.DisplayName: Sif Extra Circles
-			BookOfEirProj.DisplayName: Book Of Eir Proj
 		}
 	}
 }

@@ -21,8 +21,8 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
         public static int TimeUse;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Book of Eir I");
-            Tooltip.SetDefault("Summons a necronomicon of Sif that summons the power of nature to aid you, shooting dayblooms and other herbs at your mouse.\nBlood Sacrifice " + LifeCost);
+            //DisplayName.SetDefault("Book of Eir I");
+            //Tooltip.SetDefault("Summons a necronomicon of Sif that summons the power of nature to aid you, shooting dayblooms and other herbs at your mouse.\nBlood Sacrifice " + LifeCost);
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -233,8 +233,8 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
         public int Once;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Creeper Minion");
-            Description.SetDefault("These creepers will help you in your battles!");
+          //  DisplayName.SetDefault("Creeper Minion");
+          //  Description.SetDefault("These creepers will help you in your battles!");
         }
 
         public override void Update(Player player, ref int buffIndex)
@@ -315,7 +315,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
         {
             Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfEir/EirCirclesGlow");
             Color color2 = Color.Lerp(Color.Pink, Color.HotPink, 20f);
-            Color color = Color.Lerp(color2, Color.White, 0.5f);
+            Color color = Color.Lerp(color2, Color.Black, 0.2f);
             var bloom = color;
             bloom.A = 0;
             Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.8f, SpriteEffects.None, 0);
@@ -363,7 +363,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
         {
             Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfEir/EirQuadGlow");
             Color color2 = Color.Lerp(Color.Pink, Color.HotPink, 20f);
-            Color color = Color.Lerp(color2, Color.White, 0.5f);
+            Color color = Color.Lerp(color2, Color.Black, 0.2f);
             var bloom = color;
             bloom.A = 0;
             Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.8f, SpriteEffects.None, 0);
