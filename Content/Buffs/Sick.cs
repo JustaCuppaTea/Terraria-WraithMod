@@ -15,8 +15,8 @@ namespace WraithMod.Content.Buffs
         public static bool Active;
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Blood Sickness");
-            // Description.SetDefault("If you drink more blood you will be sick.");
+            DisplayName.SetDefault("Sickness");
+            Description.SetDefault("Defense, attack, and movement speed reduced.");
             Main.debuff[Type] = true;
         }
         public override void Update(Player player, ref int buffIndex)
