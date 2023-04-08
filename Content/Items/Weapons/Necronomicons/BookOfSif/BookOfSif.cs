@@ -151,6 +151,10 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif
                 if (++Projectile.frame >= Main.projFrames[Projectile.type])
                     Projectile.frame = 0;
             }
+            if (PlayerDead.Dead)
+            {
+                Projectile.Kill();
+            }
             Player player = Main.player[Projectile.owner];
             Projectile.velocity = Vector2.Zero;
             if (player.direction == 1)
@@ -658,6 +662,10 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif
             {
                 Projectile.timeLeft += 10;
             }
+            if (PlayerDead.Dead)
+            {
+                Projectile.Kill();
+            }
             Projectile.rotation += 0.025f * Projectile.direction;
             Projectile.Center = Main.MouseWorld;
         }
@@ -696,6 +704,10 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif
             {
                 Projectile.timeLeft += 10;
             }
+            if (PlayerDead.Dead)
+            {
+                Projectile.Kill();
+            }
             Projectile.rotation += 0.05f * Projectile.direction;
             Projectile.Center = Main.MouseWorld;
         }
@@ -729,6 +741,10 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif
             {
                 Projectile.Kill();
             }
+            if (PlayerDead.Dead)
+            {
+                Projectile.Kill();
+            }
             Projectile.velocity = Vector2.Zero;
             if (player.HeldItem.type == ModContent.ItemType<BookOfSif>())
             {
@@ -746,6 +762,14 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif
             bloom.A = 0;
             Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.8f, SpriteEffects.None, 0);
             return true;
+        }
+    }
+    public class PlayerDead : ModPlayer
+    {
+        public static bool Dead;
+        public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
+        {
+            Dead = true;
         }
     }
 }
