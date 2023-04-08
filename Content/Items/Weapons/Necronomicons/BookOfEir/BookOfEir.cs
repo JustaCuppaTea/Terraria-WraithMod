@@ -12,6 +12,7 @@ using WraithMod.Content.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes;
 using WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif;
+using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
 {
@@ -20,8 +21,8 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
         public static int TimeUse;
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Book of Eir I");
-            // Tooltip.SetDefault("Summons a necronomicon of Sif that summons the power of nature to aid you, shooting dayblooms and other herbs at your mouse.\nBlood Sacrifice " + LifeCost);
+            DisplayName.SetDefault("Book of Eir I");
+            Tooltip.SetDefault("Summons a necronomicon of Sif that summons the power of nature to aid you, shooting dayblooms and other herbs at your mouse.\nBlood Sacrifice " + LifeCost);
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -60,9 +61,8 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
         public override bool? UseItem(Player player)
         {
-            //Projectile.NewProjectile(Item.GetSource_FromThis(), Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<SifCircle>(), 0, 0, player.whoAmI);
-            //Projectile.NewProjectile(Item.GetSource_FromThis(), Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<SifPenta>(), 0, 0, player.whoAmI); save this for later
-            //Projectile.NewProjectile(Item.GetSource_FromThis(), Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<SifExtraCircles>(), 0, 0, player.whoAmI);
+            Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<EirCircles>(), 0, 0, player.whoAmI);
+            Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<EirQuad>(), 0, 0, player.whoAmI);
             string DeathMessage = "";
             int decider = Main.rand.Next(4);
             if (decider == 0)
@@ -230,10 +230,11 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
     }
     public class BlessedHealth : ModBuff
     {
+        public int Once;
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Creeper Minion");
-            // Description.SetDefault("These creepers will help you in your battles!");
+            DisplayName.SetDefault("Creeper Minion");
+            Description.SetDefault("These creepers will help you in your battles!");
         }
 
         public override void Update(Player player, ref int buffIndex)
@@ -241,6 +242,14 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
             if (player.HeldItem.type != ModContent.ItemType<BookOfEir>())
             {
                 player.ClearBuff(ModContent.BuffType<BlessedHealth>());
+            }
+            Lighting.AddLight(player.Center, Color.HotPink.ToVector3() * 0.35f);
+            Vector2 speed = Utils.RandomVector2(Main.rand, -1f, 1f);
+            if (Main.rand.NextBool(3))
+            {
+                Dust pink = Dust.NewDustDirect(player.position, player.width, player.height, DustID.PinkFairy, speed.X, speed.Y, 0, default(Color), 0.75f);
+                pink.noGravity = true;
+                pink.noLight = true;
             }
             player.GetModPlayer<BlessedHealthPlayer>().lifeRegenbuff = true;
         }
@@ -254,7 +263,6 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
         {
             lifeRegenbuff = false;
         }
-
         // Allows you to give the player a negative life regeneration based on its state (for example, the "On Fire!" debuff makes the player take damage-over-time)
         // This is typically done by setting player.lifeRegen to 0 if it is positive, setting player.lifeRegenTime to 0, and subtracting a number from player.lifeRegen
         // The player will take damage at a rate of half the number you subtract per second
@@ -264,6 +272,102 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
             {
                 Player.lifeRegen += 10;
             }
+        }
+    }
+    public class EirCircles : ModProjectile
+    {
+        public override void SetDefaults()
+        {
+            Projectile.friendly = false;
+            Projectile.hostile = false;
+            Projectile.tileCollide = false;
+            Projectile.Size = new Vector2(128, 256);
+            Projectile.penetrate = -1;
+            Projectile.alpha = 255;
+            Projectile.scale = 1.5f;
+            Projectile.aiStyle = 0;
+        }
+        public override void AI()
+        {
+
+            Player player = Main.player[Projectile.owner];
+            if (player.HeldItem.type != ModContent.ItemType<BookOfEir>())
+            {
+                Projectile.Kill();
+            }
+            if (player.HasBuff(ModContent.BuffType<BlessedHealth>()))
+            {
+                Projectile.timeLeft += 10;
+            }
+            Projectile.velocity = Vector2.Zero;
+            if (player.HeldItem.type == ModContent.ItemType<BookOfEir>())
+            {
+                Projectile.timeLeft += 10;
+            }
+            if (PlayerDead.Dead)
+            {
+                Projectile.Kill();
+            }
+            Projectile.rotation += 0.025f * Projectile.direction;
+            Projectile.Center = player.Center;
+        }
+        public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
+        {
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfEir/EirCirclesGlow");
+            Color color2 = Color.Lerp(Color.Pink, Color.HotPink, 20f);
+            Color color = Color.Lerp(color2, Color.White, 0.5f);
+            var bloom = color;
+            bloom.A = 0;
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.8f, SpriteEffects.None, 0);
+            return true;
+        }
+    }
+    public class EirQuad : ModProjectile
+    {
+        public override void SetDefaults()
+        {
+            Player player = Main.player[Projectile.owner];
+            Projectile.friendly = false;
+            Projectile.hostile = false;
+            Projectile.tileCollide = false;
+            Projectile.Size = new Vector2(112, 204);
+            Projectile.penetrate = -1;
+            Projectile.alpha = 255;
+            Projectile.scale = 1.5f;
+            Projectile.aiStyle = 0;
+        }
+        public override void AI()
+        {
+            Player player = Main.player[Projectile.owner];
+            if (player.HeldItem.type != ModContent.ItemType<BookOfEir>())
+            {
+                Projectile.Kill();
+            }
+            Projectile.velocity = Vector2.Zero;
+            if (player.HeldItem.type == ModContent.ItemType<BookOfEir>())
+            {
+                Projectile.timeLeft += 10;
+            }
+            if (player.HasBuff(ModContent.BuffType<BlessedHealth>()))
+            {
+                Projectile.timeLeft += 10;
+            }
+            if (PlayerDead.Dead)
+            {
+                Projectile.Kill();
+            }
+            Projectile.rotation += 0.05f * Projectile.direction;
+            Projectile.Center = player.Center;
+        }
+        public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
+        {
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfEir/EirQuadGlow");
+            Color color2 = Color.Lerp(Color.Pink, Color.HotPink, 20f);
+            Color color = Color.Lerp(color2, Color.White, 0.5f);
+            var bloom = color;
+            bloom.A = 0;
+            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.8f, SpriteEffects.None, 0);
+            return true;
         }
     }
 }
