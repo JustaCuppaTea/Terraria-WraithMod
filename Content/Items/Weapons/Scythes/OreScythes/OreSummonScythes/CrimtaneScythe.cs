@@ -109,7 +109,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
                 .AddIngredient(ItemID.Bone, 35)
                 .AddIngredient(ItemID.CrimtaneBar, 21)
                 .AddIngredient(ItemID.TissueSample, 16)
-                .AddIngredient(ModContent.ItemType<DarkDust>(), 3)
+                .AddIngredient(ModContent.ItemType<DarkDust>(), 1)
                 .AddTile(TileID.WorkBenches)
                 .Register();
         }
