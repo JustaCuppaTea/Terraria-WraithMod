@@ -114,7 +114,7 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes
             CreateRecipe()
                 .AddIngredient(ItemID.Obsidian, 35)
                 .AddIngredient(ItemID.HellstoneBar, 20)
-                .AddIngredient(ModContent.ItemType<DarkDust>(), 3)
+                .AddIngredient(ModContent.ItemType<DarkDust>(), 2)
                 .AddIngredient(ItemID.BlackLens, 1)
                 .AddTile(TileID.Hellforge)
                 .Register();

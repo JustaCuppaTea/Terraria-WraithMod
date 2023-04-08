@@ -99,7 +99,6 @@ namespace WraithMod.Content.Items.Weapons.Scythes.OreScythes
             CreateRecipe()
                 .AddIngredient(ItemID.Wood, 13)
                 .AddIngredient(ItemID.GoldBar, 16)
-                .AddIngredient(ModContent.ItemType<DarkDust>(), 2)
                 .AddTile(TileID.Anvils)
                 .Register();
         }
