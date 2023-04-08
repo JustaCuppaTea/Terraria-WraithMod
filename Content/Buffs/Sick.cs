@@ -23,18 +23,24 @@ namespace WraithMod.Content.Buffs
         {
             if (player.direction == 1)
             {
-                for (int d = 0; d < 40; d++)
+                for (int d = 0; d < 20; d++)
                 {
-                    Dust.NewDust(new Vector2(player.position.X, player.position.Y + 10), player.width, player.height, DustID.GreenBlood, 15f, 0f, 150, default(Color), 1.5f);
-                    Dust.NewDust(new Vector2(player.position.X, player.position.Y + 10), player.width, player.height, DustID.Confetti_Yellow, 15f, 0f, 150, default(Color), 1.5f);
+                    Dust.NewDust(new Vector2(player.position.X + 10, player.position.Y + 10), player.width, 4, DustID.GreenBlood, 7.5f, 0f, 150, default(Color), 1.5f);
+                }
+                for (int d = 0; d < 10; d++)
+                {
+                    Dust.NewDust(new Vector2(player.position.X + 10, player.position.Y + 10), player.width, 4, DustID.Confetti_Yellow, 10f, 0f, 150, default(Color), 1.25f);
                 }
             }
             if (player.direction == -1)
             {
-                for (int d = 0; d < 40; d++)
+                for (int d = 0; d < 20; d++)
                 {
-                    Dust.NewDust(new Vector2(player.position.X, player.position.Y + 10), player.width, player.height, DustID.GreenBlood, -15f, 0f, 150, default(Color), 1.5f);
-                    Dust.NewDust(new Vector2(player.position.X, player.position.Y + 10), player.width, player.height, DustID.Confetti_Yellow, -15f, 0f, 150, default(Color), 1.5f);
+                    Dust.NewDust(new Vector2(player.position.X - 10, player.position.Y + 10), player.width, 4, DustID.GreenBlood, -7.5f, 0f, 150, default(Color), 1.5f);
+                }
+                for (int d = 0; d < 10; d++)
+                {
+                    Dust.NewDust(new Vector2(player.position.X - 10, player.position.Y + 10), player.width, 4, DustID.Confetti_Yellow, -10f, 0f, 150, default(Color), 1.25f);
                 }
             }
             player.GetDamage(DamageClass.Generic) *= 0.5f; // attack decreased by 50%

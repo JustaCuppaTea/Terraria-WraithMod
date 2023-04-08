@@ -40,6 +40,10 @@ namespace WraithMod.Content.Items.Misc
         }
         public override void OnConsumeItem(Player player)
         {
+            if (player.HasBuff(ModContent.BuffType<BloodSickness>()))
+            {
+                player.AddBuff(ModContent.BuffType<Sick>(), 540);
+            }
             player.AddBuff(ModContent.BuffType<BloodSickness>(), 540);
         }
 
