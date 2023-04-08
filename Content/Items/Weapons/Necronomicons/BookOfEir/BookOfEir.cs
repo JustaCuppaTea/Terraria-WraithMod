@@ -268,7 +268,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
         {
             if (lifeRegenbuff)
             {
-                Player.lifeRegen += 20; // +10 life regen
+                Player.lifeRegen += 12; // +6 life regen
             }
         }
     }
