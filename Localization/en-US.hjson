@@ -11,7 +11,10 @@ Mods: {
 		Tiles.RitualTable.MapEntry: Ritual Table
 
 		Items: {
-			BaseScythe.DisplayName: Base Scythe
+			BaseScythe: {
+				DisplayName: Base Scythe
+				Tooltip: ""
+			}
 
 			GelAglet: {
 				DisplayName: Gel Aglet
@@ -47,7 +50,10 @@ Mods: {
 				Tooltip: Deals damage to you and if you have a bottle in your inventory, fills the bottle with blood, if you have no bottle in your inventory, you lose blood with no reward.
 			}
 
-			RitualTable.DisplayName: Ritual Table
+			RitualTable: {
+				DisplayName: Ritual Table
+				Tooltip: ""
+			}
 
 			BookOfSif: {
 				DisplayName: Book of Sif: Nature I
@@ -57,6 +63,7 @@ Mods: {
 					Blood Sacrifice 30
 					'''
 			}
+
 			BookOfEir: {
 				DisplayName: Book of Eir: Healing I
 				Tooltip:
@@ -187,7 +194,6 @@ Mods: {
 		}
 
 		Buffs: {
-
 			BloodSickness: {
 				DisplayName: Blood Sickness
 				Description: If you drink more blood you will be sick.
@@ -197,9 +203,15 @@ Mods: {
 				DisplayName: Blessed Heart
 				Description: You are regenerating your life with the blessing of Eir.
 			}
+
 			Rage: {
-				DisplayName: Rage
+				DisplayName: Enraged
 				Description: Defense decreased by 10% however, damage is increased by 10%.
+			}
+
+			Sick: {
+				DisplayName: Sickness
+				Description: Defense, damage and movement speed decreased.
 			}
 
 			InvincibleCooldown: {
@@ -260,6 +272,14 @@ Mods: {
 			TinCoin.DisplayName: Tin Coin
 			TungstenCoin.DisplayName: Tungsten Coin
 			PurityStick.DisplayName: Purity Stick
+			EirQuad.DisplayName: Eir Quad
+			EirCircles.DisplayName: Eir Circles
+			BookOfEirProj.DisplayName: Book Of Eir Proj
+			SifCircle.DisplayName: Sif Circle
+			SifExtraCircles.DisplayName: Sif Extra Circles
+			SifPenta.DisplayName: Sif Penta
 		}
+
+		"Keybinds.Armour Set Bonus.DisplayName": Mods.WraithMod.Keybinds.Armour Set Bonus.DisplayName
 	}
 }
