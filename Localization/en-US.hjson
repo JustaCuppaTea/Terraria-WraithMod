@@ -11,5 +11,7 @@ Mods: {
 		MapObject: {
 			MapObject.RitualTable: Ritual Table
 		}
+
+		"Keybinds.Armour Set Bonus.DisplayName": Mods.WraithMod.Keybinds.Armour Set Bonus.DisplayName
 	}
 }
