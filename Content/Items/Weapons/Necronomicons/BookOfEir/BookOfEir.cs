@@ -61,6 +61,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
         public override bool? UseItem(Player player)
         {
+            player.AddBuff(ModContent.BuffType<BlessedHealth>(), 1800);
             Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<EirCircles>(), 0, 0, player.whoAmI);
             Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<EirQuad>(), 0, 0, player.whoAmI);
             string DeathMessage = "";
@@ -167,14 +168,6 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
             {
                 Projectile.timeLeft += 10;
             }
-            Timer++;
-            if (Timer > BookOfEir.TimeUse)
-            {
-                // Our timer has finished, do something here:
-                // SoundEngine.PlaySound, Dust.NewDust, Projectile.NewProjectile, etc. Up to you.
-                player.AddBuff(ModContent.BuffType<BlessedHealth>(), 180);
-                Timer = 0;
-            }
         }
         // Some advanced drawing because the texture image isn't centered or symetrical
         // If you dont want to manually drawing you can use vanilla projectile rendering offsets
@@ -233,8 +226,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
         public int Once;
         public override void SetStaticDefaults()
         {
-          //  DisplayName.SetDefault("Creeper Minion");
-          //  Description.SetDefault("These creepers will help you in your battles!");
+            Main.buffNoTimeDisplay[Type] = true;
         }
 
         public override void Update(Player player, ref int buffIndex)
@@ -243,11 +235,15 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
             {
                 player.ClearBuff(ModContent.BuffType<BlessedHealth>());
             }
+            if (player.HeldItem.type == ModContent.ItemType<BookOfEir>())
+            {
+                player.AddBuff(ModContent.BuffType<BlessedHealth>(), 180);
+            }
             Lighting.AddLight(player.Center, Color.HotPink.ToVector3() * 0.35f);
             Vector2 speed = Utils.RandomVector2(Main.rand, -1f, 1f);
             if (Main.rand.NextBool(3))
             {
-                Dust pink = Dust.NewDustDirect(player.position, player.width, player.height, DustID.PinkFairy, speed.X, speed.Y, 0, default(Color), 0.75f);
+                Dust pink = Dust.NewDustDirect(player.position, player.width, player.height, DustID.PinkFairy, speed.X, speed.Y, 0, default(Color), 1f);
                 pink.noGravity = true;
                 pink.noLight = true;
             }
@@ -270,7 +266,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
         {
             if (lifeRegenbuff)
             {
-                Player.lifeRegen += 10;
+                Player.lifeRegen += 20; // +10 life regen
             }
         }
     }
