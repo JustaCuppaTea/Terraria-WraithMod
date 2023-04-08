@@ -160,6 +160,11 @@ Mods: {
 				DisplayName: Wooden Scythe
 				Tooltip: ""
 			}
+
+			BookOfEir: {
+				DisplayName: Book Of Eir
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -192,6 +197,7 @@ Mods: {
 			SifCircle.DisplayName: Sif Circle
 			SifPenta.DisplayName: Sif Penta
 			SifExtraCircles.DisplayName: Sif Extra Circles
+			BookOfEirProj.DisplayName: Book Of Eir Proj
 		}
 	}
 }
