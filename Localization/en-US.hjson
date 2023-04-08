@@ -45,6 +45,11 @@ Mods: {
 				Description: Mods.WraithMod.Buffs.BloodSickness.Description
 				DisplayName: Blood Sickness
 			}
+
+			BlessedHealth: {
+				Description: Mods.WraithMod.Buffs.BlessedHealth.Description
+				DisplayName: Blessed Health
+			}
 		}
 
 		Tiles.RitualTable.MapEntry: Ritual Table

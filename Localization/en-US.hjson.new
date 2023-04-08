@@ -187,11 +187,16 @@ Mods: {
 		}
 
 		Buffs: {
+
 			BloodSickness: {
 				DisplayName: Blood Sickness
 				Description: If you drink more blood you will be sick.
 			}
 
+			BlessedHealth: {
+				DisplayName: Blessed Heart
+				Description: You are regenerating your life with the blessing of Eir.
+			}
 			Rage: {
 				DisplayName: Rage
 				Description: Defense decreased by 10% however, damage is increased by 10%.

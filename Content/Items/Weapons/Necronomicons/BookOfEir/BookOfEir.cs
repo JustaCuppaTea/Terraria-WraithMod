@@ -10,6 +10,8 @@ using WraithMod.Content.BaseClasses;
 using WraithMod.Content.Class;
 using WraithMod.Content.Tiles.Furniture;
 using Microsoft.Xna.Framework;
+using WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes;
+using WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif;
 
 namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
 {
@@ -165,6 +167,14 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
             {
                 Projectile.timeLeft += 10;
             }
+            Timer++;
+            if (Timer > BookOfEir.TimeUse)
+            {
+                // Our timer has finished, do something here:
+                // SoundEngine.PlaySound, Dust.NewDust, Projectile.NewProjectile, etc. Up to you.
+                player.AddBuff(ModContent.BuffType<BlessedHealth>(), 180);
+                Timer = 0;
+            }
         }
         // Some advanced drawing because the texture image isn't centered or symetrical
         // If you dont want to manually drawing you can use vanilla projectile rendering offsets
@@ -216,6 +226,44 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
 
             // It's important to return false, otherwise we also draw the original texture.
             return false;
+        }
+    }
+    public class BlessedHealth : ModBuff
+    {
+        public override void SetStaticDefaults()
+        {
+            // DisplayName.SetDefault("Creeper Minion");
+            // Description.SetDefault("These creepers will help you in your battles!");
+        }
+
+        public override void Update(Player player, ref int buffIndex)
+        {
+            if (player.HeldItem.type != ModContent.ItemType<BookOfEir>())
+            {
+                player.ClearBuff(ModContent.BuffType<BlessedHealth>());
+            }
+            player.GetModPlayer<BlessedHealthPlayer>().lifeRegenbuff = true;
+        }
+    }
+    public class BlessedHealthPlayer : ModPlayer
+    {
+        // Flag checking when life regen debuff should be activated
+        public bool lifeRegenbuff;
+
+        public override void ResetEffects()
+        {
+            lifeRegenbuff = false;
+        }
+
+        // Allows you to give the player a negative life regeneration based on its state (for example, the "On Fire!" debuff makes the player take damage-over-time)
+        // This is typically done by setting player.lifeRegen to 0 if it is positive, setting player.lifeRegenTime to 0, and subtracting a number from player.lifeRegen
+        // The player will take damage at a rate of half the number you subtract per second
+        public override void UpdateLifeRegen()
+        {
+            if (lifeRegenbuff)
+            {
+                Player.lifeRegen += 10;
+            }
         }
     }
 }
