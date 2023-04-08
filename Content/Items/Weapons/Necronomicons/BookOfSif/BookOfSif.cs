@@ -24,7 +24,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif
         public static int TimeUse;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Book of Sif I");
+            DisplayName.SetDefault("Book of Sif: Nature I");
             Tooltip.SetDefault("Summons a necronomicon of Sif that summons the power of nature to aid you, shooting dayblooms and other herbs at your mouse.\nBlood Sacrifice " + LifeCost);
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

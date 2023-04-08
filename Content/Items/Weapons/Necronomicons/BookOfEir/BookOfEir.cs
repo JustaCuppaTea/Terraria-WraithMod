@@ -21,16 +21,16 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
         public static int TimeUse;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Book of Eir I");
-            Tooltip.SetDefault("Summons a necronomicon of Sif that summons the power of nature to aid you, shooting dayblooms and other herbs at your mouse.\nBlood Sacrifice " + LifeCost);
+            DisplayName.SetDefault("Book of Eir: Healing I");
+            Tooltip.SetDefault("Summons a necronomicon that heals you slowly.\nBlood Sacrifice " + LifeCost);
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
         {
-            BaseLifeCost = 30;
-            LifeCost = 30;
+            BaseLifeCost = 34;
+            LifeCost = 34;
             Item.width = 62;
             Item.height = 62;
 
@@ -233,8 +233,8 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
         public int Once;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Creeper Minion");
-            Description.SetDefault("These creepers will help you in your battles!");
+            DisplayName.SetDefault("Blessed Heart");
+            Description.SetDefault("You are regenerating your life with the blessing of Eir.");
         }
 
         public override void Update(Player player, ref int buffIndex)
