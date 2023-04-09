@@ -101,12 +101,8 @@ Mods: {
 			}
 
 			LeadScythe: {
-				DisplayName: Lead Scythe
-				Tooltip:
-					'''
-					Sometimes creates an anvil at the position of the mouse.
-					Lifecost 14
-					'''
+				DisplayName: Custom swing sword
+				Tooltip: Test to see if i can make a sword that swings good.
 			}
 
 			MeteoriteScythe: {
@@ -190,6 +186,16 @@ Mods: {
 					Shoots out a spinning scythe
 					Lifecost 10
 					'''
+			}
+
+			CustomSwingSword: {
+				DisplayName: Custom Swing Sword
+				Tooltip: ""
+			}
+
+			BookOfFreyja: {
+				DisplayName: Book Of Freyja
+				Tooltip: ""
 			}
 		}
 
@@ -278,6 +284,8 @@ Mods: {
 			SifCircle.DisplayName: Sif Circle
 			SifExtraCircles.DisplayName: Sif Extra Circles
 			SifPenta.DisplayName: Sif Penta
+			CustomSwingProj.DisplayName: Custom Swing Proj
+			BookOfFreyjaProj.DisplayName: Book Of Freyja Proj
 		}
 
 		"Keybinds.Armour Set Bonus.DisplayName": Mods.WraithMod.Keybinds.Armour Set Bonus.DisplayName

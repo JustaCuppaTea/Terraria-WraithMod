@@ -1,6 +1,8 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using Terraria.Audio;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -8,15 +10,16 @@ using Terraria.ModLoader;
 using Terraria;
 using WraithMod.Content.BaseClasses;
 using WraithMod.Content.Class;
-using WraithMod.Content.Tiles.Furniture;
+using WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir;
 using Microsoft.Xna.Framework;
-using WraithMod.Content.Items.Weapons.Scythes.OreScythes.OreSummonScythes;
+using WraithMod.Content.Tiles.Furniture;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif;
-using static Terraria.ModLoader.PlayerDrawLayer;
 
-namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
+namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfFreyja
 {
-    public class BookOfEir : BaseScythe
+    public class BookOfFreyja : BaseScythe
     {
         public static int TimeUse;
         public override void SetStaticDefaults()
@@ -50,7 +53,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
             Item.rare = ItemRarityID.Purple;
             Item.UseSound = SoundID.Item1;
 
-            Item.shoot = ModContent.ProjectileType<BookOfEirProj>(); // ID of the projectiles the sword will shoot
+            Item.shoot = ModContent.ProjectileType<BookOfFreyjaProj>(); // ID of the projectiles the sword will shoot
             Item.shootSpeed = 8f; // Speed of the projectiles the sword will shoot
 
             // If you want melee speed to only affect the swing speed of the weapon and not the shoot speed (not recommended)
@@ -103,8 +106,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
             base.HoldItem(player);
         }
     }
-
-    public class BookOfEirProj : ModProjectile
+    public class BookOfFreyjaProj : ModProjectile
     {
         public float Timer
         {
@@ -130,12 +132,12 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
         {
             for (int d = 0; d < 50; d++)
             {
-                Dust yellow = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.YellowTorch, 0f, 0f, 150, default, 1.5f);
+                Dust yellow = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleCrystalShard, 0f, 0f, 150, default, 1.5f);
                 yellow.noGravity = true;
             }
             for (int d = 0; d < 50; d++)
             {
-                Dust green = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.GreenTorch, 0f, 0f, 150, default, 1.5f);
+                Dust green = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PinkCrystalShard, 0f, 0f, 150, default, 1.5f);
                 green.noGravity = true;
             }
         }
@@ -164,11 +166,11 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
                 Projectile.spriteDirection = -1;
                 Projectile.position = new Vector2(player.position.X - 60, player.position.Y);
             }
-            if (player.HeldItem.type != ModContent.ItemType<BookOfEir>())
+            if (player.HeldItem.type != ModContent.ItemType<BookOfFreyja>())
             {
                 Projectile.Kill();
             }
-            if (player.HeldItem.type == ModContent.ItemType<BookOfEir>())
+            if (player.HeldItem.type == ModContent.ItemType<BookOfFreyja>())
             {
                 Projectile.timeLeft += 10;
             }
@@ -178,8 +180,8 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
         // Here you can check it https://github.com/tModLoader/tModLoader/wiki/Basic-Projectile#horizontal-sprite-example
         public override bool PreDraw(ref Color lightColor)
         {
-            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfEir/BookOfEirGlow");
-            Color color = Color.Lerp(Color.Pink, Color.HotPink, 20f);
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfFreyja/BookOfFreyjaGlow");
+            Color color = Color.Lerp(Color.Pink, Color.Magenta, 20f);
             Color color2 = Color.Lerp(Color.White, color, 20f);
             var bloom = color2;
             bloom.A = 0;
@@ -225,149 +227,8 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfEir
             return false;
         }
     }
-    public class BlessedHealth : ModBuff
+    public class CharmPulse : ModProjectile
     {
-        public int Once;
-        public override void SetStaticDefaults()
-        {
-            Main.buffNoTimeDisplay[Type] = true;
-        }
 
-        public override void Update(Player player, ref int buffIndex)
-        {
-            if (player.HeldItem.type != ModContent.ItemType<BookOfEir>())
-            {
-                player.ClearBuff(ModContent.BuffType<BlessedHealth>());
-            }
-            if (player.HeldItem.type == ModContent.ItemType<BookOfEir>())
-            {
-                player.AddBuff(ModContent.BuffType<BlessedHealth>(), 180);
-            }
-            Lighting.AddLight(player.Center, Color.HotPink.ToVector3() * 0.35f);
-            Vector2 speed = Utils.RandomVector2(Main.rand, -1f, 1f);
-            if (Main.rand.NextBool(3))
-            {
-                Dust pink = Dust.NewDustDirect(player.position, player.width, player.height, DustID.PinkFairy, speed.X, speed.Y, 0, default(Color), 1f);
-                pink.noGravity = true;
-                pink.noLight = true;
-            }
-            player.GetModPlayer<BlessedHealthPlayer>().lifeRegenbuff = true;
-        }
-    }
-    public class BlessedHealthPlayer : ModPlayer
-    {
-        // Flag checking when life regen debuff should be activated
-        public bool lifeRegenbuff;
-
-        public override void ResetEffects()
-        {
-            lifeRegenbuff = false;
-        }
-        // Allows you to give the player a negative life regeneration based on its state (for example, the "On Fire!" debuff makes the player take damage-over-time)
-        // This is typically done by setting player.lifeRegen to 0 if it is positive, setting player.lifeRegenTime to 0, and subtracting a number from player.lifeRegen
-        // The player will take damage at a rate of half the number you subtract per second
-        public override void UpdateLifeRegen()
-        {
-            if (lifeRegenbuff)
-            {
-                Player.lifeRegen += 12; // +6 life regen
-            }
-        }
-    }
-    public class EirCircles : ModProjectile
-    {
-        public override void SetDefaults()
-        {
-            Projectile.friendly = false;
-            Projectile.hostile = false;
-            Projectile.tileCollide = false;
-            Projectile.Size = new Vector2(128, 256);
-            Projectile.penetrate = -1;
-            Projectile.alpha = 255;
-            Projectile.scale = 1.5f;
-            Projectile.aiStyle = 0;
-        }
-        public override void AI()
-        {
-
-            Player player = Main.player[Projectile.owner];
-            if (player.HeldItem.type != ModContent.ItemType<BookOfEir>())
-            {
-                Projectile.Kill();
-            }
-            if (player.HasBuff(ModContent.BuffType<BlessedHealth>()))
-            {
-                Projectile.timeLeft += 10;
-            }
-            Projectile.velocity = Vector2.Zero;
-            if (player.HeldItem.type == ModContent.ItemType<BookOfEir>())
-            {
-                Projectile.timeLeft += 10;
-            }
-            if (PlayerDead.Dead)
-            {
-                Projectile.Kill();
-            }
-            Projectile.rotation += 0.025f * Projectile.direction;
-            Projectile.Center = player.Center;
-        }
-        public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
-        {
-            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfEir/EirCirclesGlow");
-            Color color2 = Color.Lerp(Color.Pink, Color.HotPink, 20f);
-            Color color = Color.Lerp(color2, Color.Black, 0.2f);
-            var bloom = color;
-            bloom.A = 0;
-            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.8f, SpriteEffects.None, 0);
-            return true;
-        }
-    }
-    public class EirQuad : ModProjectile
-    {
-        public override void SetDefaults()
-        {
-            Player player = Main.player[Projectile.owner];
-            Projectile.friendly = false;
-            Projectile.hostile = false;
-            Projectile.tileCollide = false;
-            Projectile.Size = new Vector2(112, 204);
-            Projectile.penetrate = -1;
-            Projectile.alpha = 255;
-            Projectile.scale = 1.5f;
-            Projectile.aiStyle = 0;
-        }
-        public override void AI()
-        {
-            Player player = Main.player[Projectile.owner];
-            if (player.HeldItem.type != ModContent.ItemType<BookOfEir>())
-            {
-                Projectile.Kill();
-            }
-            Projectile.velocity = Vector2.Zero;
-            if (player.HeldItem.type == ModContent.ItemType<BookOfEir>())
-            {
-                Projectile.timeLeft += 10;
-            }
-            if (player.HasBuff(ModContent.BuffType<BlessedHealth>()))
-            {
-                Projectile.timeLeft += 10;
-            }
-            if (PlayerDead.Dead)
-            {
-                Projectile.Kill();
-            }
-            Projectile.rotation += 0.05f * Projectile.direction;
-            Projectile.Center = player.Center;
-        }
-        public override bool PreDraw(ref Color lightColor) // holy moly the bloom effect actually works
-        {
-            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfEir/EirQuadGlow");
-            Color color2 = Color.Lerp(Color.Pink, Color.HotPink, 20f);
-            Color color = Color.Lerp(color2, Color.Black, 0.2f);
-            var bloom = color;
-            bloom.A = 0;
-            Main.EntitySpriteDraw(bloomTex.Value, Projectile.Center - Main.screenPosition, null, bloom, Projectile.rotation, bloomTex.Size() * 0.5f, Projectile.scale * 0.8f, SpriteEffects.None, 0);
-            return true;
-        }
     }
 }
