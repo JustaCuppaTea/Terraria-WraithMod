@@ -777,5 +777,9 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfSif
         {
             Dead = true;
         }
+        public override void OnRespawn()
+        {
+            Dead = false;
+        }
     }
 }

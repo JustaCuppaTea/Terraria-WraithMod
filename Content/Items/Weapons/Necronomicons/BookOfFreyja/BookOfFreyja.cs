@@ -182,7 +182,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfFreyja
                     yellow.noGravity = true;
                 }
                 SoundEngine.PlaySound(SoundID.MaxMana);
-                Projectile.NewProjectile(Projectile.GetSource_FromThis(), player.position, Vector2.Zero, ModContent.ProjectileType<CharmPulse>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), player.Center, Vector2.Zero, ModContent.ProjectileType<CharmPulse>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
                 Timer = 0;
             }
         }
@@ -257,16 +257,24 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfFreyja
             Projectile.tileCollide = false;
             Projectile.Size = new Vector2(128, 128);
             Projectile.penetrate = -1;
+            Projectile.scale = 2f;
+            Projectile.alpha = 125;
             Projectile.aiStyle = 0;
+        }
+        public override void OnSpawn(IEntitySource source)
+        {
+            Projectile.NewProjectile(source, Projectile.Center, Vector2.Zero, ModContent.ProjectileType<CharmPulseGlow>(), 0, 0, Projectile.owner);
         }
         public override void AI()
         {
+            Player player = Main.player[Projectile.owner];
+            Projectile.Center = player.Center;
             Timer++;
-            if (Timer >= 108)
+            if (Timer >= 70)
             {
                 Projectile.Kill();
             }
-            if (++Projectile.frameCounter >= 12)
+            if (++Projectile.frameCounter >= 8)
             {
                 Projectile.frameCounter = 0;
                 // Or more compactly Projectile.frame = ++Projectile.frame % Main.projFrames[Projectile.type];
@@ -276,8 +284,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfFreyja
         }
 
         public override bool PreDraw(ref Color lightColor)
-        {
-            // SpriteEffects helps to flip texture horizontally and vertically
+        { 
             SpriteEffects spriteEffects = SpriteEffects.None;
             if (Projectile.spriteDirection == -1)
                 spriteEffects = SpriteEffects.FlipHorizontally;
@@ -300,7 +307,7 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfFreyja
 
             // If image isn't centered or symmetrical you can specify origin of the sprite
             // (0,0) for the upper-left corner
-            float offsetX = 20f;
+            float offsetX = 64f;
             origin.X = Projectile.spriteDirection == 1 ? sourceRectangle.Width - offsetX : offsetX;
 
             // If sprite is vertical
@@ -313,6 +320,92 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfFreyja
             Main.EntitySpriteDraw(texture,
                 Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY),
                 sourceRectangle, drawColor, Projectile.rotation, origin, Projectile.scale, spriteEffects, 0);
+
+            // It's important to return false, otherwise we also draw the original texture.
+            return false;
+        }
+    }
+    public class CharmPulseGlow : ModProjectile
+    {
+        public float Timer
+        {
+            get => Projectile.ai[0];
+            set => Projectile.ai[0] = value;
+        }
+        public override void SetStaticDefaults()
+        {
+            // Total count animation frames
+            Main.projFrames[Projectile.type] = 9;
+        }
+        public override void SetDefaults()
+        {
+            Projectile.friendly = false;
+            Projectile.tileCollide = false;
+            Projectile.Size = new Vector2(128, 128);
+            Projectile.penetrate = -1;
+            Projectile.scale = 2.15f;
+            Projectile.alpha = 125;
+            Projectile.aiStyle = 0;
+        }
+        public override void AI()
+        {
+            Player player = Main.player[Projectile.owner];
+            Projectile.Center = player.Center;
+            Timer++;
+            if (Timer >= 70)
+            {
+                Projectile.Kill();
+            }
+            if (++Projectile.frameCounter >= 8)
+            {
+                Projectile.frameCounter = 0;
+                // Or more compactly Projectile.frame = ++Projectile.frame % Main.projFrames[Projectile.type];
+                if (++Projectile.frame >= Main.projFrames[Projectile.type])
+                    Projectile.frame = 0;
+            }
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Asset<Texture2D> bloomTex = ModContent.Request<Texture2D>("WraithMod/Content/Items/Weapons/Necronomicons/BookOfFreyja/CharmPulseGlow");
+            Color color = Color.Lerp(Color.Pink, Color.Magenta, 20f);
+            Color color2 = Color.Lerp(Color.White, color, 20f);
+            var bloom = color2;
+            bloom.A = 0;
+            SpriteEffects spriteEffects = SpriteEffects.None;
+            if (Projectile.spriteDirection == -1)
+                spriteEffects = SpriteEffects.FlipHorizontally;
+
+            // Getting texture of projectile
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
+
+            // Calculating frameHeight and current Y pos dependence of frame
+            // If texture without animation frameHeight is always texture.Height and startY is always 0
+            int frameHeight = texture.Height / Main.projFrames[Projectile.type];
+            int startY = frameHeight * Projectile.frame;
+
+            // Get this frame on texture
+            Rectangle sourceRectangle = new Rectangle(0, startY, texture.Width, frameHeight);
+
+            // Alternatively, you can skip defining frameHeight and startY and use this:
+            // Rectangle sourceRectangle = texture.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
+
+            Vector2 origin = sourceRectangle.Size() / 2f;
+
+            // If image isn't centered or symmetrical you can specify origin of the sprite
+            // (0,0) for the upper-left corner
+            float offsetX = 96f;
+            origin.X = Projectile.spriteDirection == 1 ? sourceRectangle.Width - offsetX : offsetX;
+
+            // If sprite is vertical
+            // float offsetY = 20f;
+            // origin.Y = (float)(Projectile.spriteDirection == 1 ? sourceRectangle.Height - offsetY : offsetY);
+
+
+            // Applying lighting and draw current frame
+            Main.EntitySpriteDraw(bloomTex.Value,
+                Projectile.Center - Main.screenPosition,
+                sourceRectangle, bloom, Projectile.rotation, origin, Projectile.scale, spriteEffects, 0);
 
             // It's important to return false, otherwise we also draw the original texture.
             return false;
