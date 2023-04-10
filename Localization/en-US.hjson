@@ -286,6 +286,7 @@ Mods: {
 			SifPenta.DisplayName: Sif Penta
 			CustomSwingProj.DisplayName: Custom Swing Proj
 			BookOfFreyjaProj.DisplayName: Book Of Freyja Proj
+			CharmPulse.DisplayName: Charm Pulse
 		}
 
 		"Keybinds.Armour Set Bonus.DisplayName": Mods.WraithMod.Keybinds.Armour Set Bonus.DisplayName
