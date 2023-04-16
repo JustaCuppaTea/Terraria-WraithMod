@@ -281,6 +281,46 @@ namespace WraithMod.Content.Items.Weapons.Necronomicons.BookOfFreyja
                 if (++Projectile.frame >= Main.projFrames[Projectile.type])
                     Projectile.frame = 0;
             }
+            if (Projectile.frame == 0)
+            {
+                Projectile.Resize(12 * 2, 12 * 2);
+            }
+            if (Projectile.frame == 1)
+            {
+                Projectile.Resize(24 * 2, 24 * 2);
+            }
+            if (Projectile.frame == 2)
+            {
+                Projectile.Resize(36 * 2, 36 * 2);
+            }
+            if (Projectile.frame == 3)
+            {
+                Projectile.Resize(56 * 2, 56 * 2);
+            }
+            if (Projectile.frame == 4)
+            {
+                Projectile.Resize(64 * 2, 64 * 2);
+            }
+            if (Projectile.frame == 5)
+            {
+                Projectile.Resize(76 * 2, 76 * 2);
+            }
+            if (Projectile.frame == 6)
+            {
+                Projectile.Resize(88 * 2, 88 * 2);
+            }
+            if (Projectile.frame == 7)
+            {
+                Projectile.Resize(100 * 2, 100 * 2);
+            }
+            if (Projectile.frame == 8)
+            {
+                Projectile.Resize(112 * 2, 112 * 2);
+            }
+            if (Projectile.frame == 9)
+            {
+                Projectile.Resize(128 * 2, 128 * 2);
+            }
         }
 
         public override bool PreDraw(ref Color lightColor)
